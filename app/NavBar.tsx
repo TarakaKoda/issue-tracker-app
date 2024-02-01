@@ -1,8 +1,13 @@
+"use client";
+
+import classnames from "classnames";
 import Link from "next/link";
+import { usePathname } from "next/navigation";
 import { AiFillBug } from "react-icons/ai";
 import DarkModeButton from "./components/DarkModeButton";
 
 const NavBar = () => {
+  const currentPath = usePathname();
   const links = [
     { label: "Dashboard", href: "/" },
     { label: "Issues", href: "/issues" },
@@ -18,10 +23,16 @@ const NavBar = () => {
           {links.map((link) => (
             <li
               key={link.label}
-              className=" text-zinc-500 transition-colors hover:text-zinc-800 dark:text-zinc-300 dark:hover:text-white"
+              className={classnames({
+                "text-zinc-900 dark:text-white": currentPath === link.href,
+                " text-zinc-500 dark:text-zinc-500": currentPath !== link.href,
+                "transition-colors ": true,
+              })}
             >
               <Link href={link.href}>
-                <p className="text-sm font-semibold">{link.label}</p>
+                <p className="text-md font-semibold leading-tight tracking-tight">
+                  {link.label}
+                </p>
               </Link>
             </li>
           ))}
