@@ -4,8 +4,6 @@ import "easymde/dist/easymde.min.css";
 import SimpleMDE from "react-simplemde-editor";
 
 const SimpleMDEProvider = () => {
-
-  
   return (
     <div>
       <style>
@@ -25,7 +23,7 @@ const SimpleMDEProvider = () => {
           // }
         `}
       </style>
-      <SimpleMDE className="" placeholder="Description" />
+      <SimpleMDE placeholder="Description" />
     </div>
   );
 };
