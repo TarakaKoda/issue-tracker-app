@@ -33,8 +33,13 @@ const NewIssuePage = () => {
   });
 
   async function onSubmit(values: z.infer<typeof createNewIssueSchema>) {
-    await axios.post("/api/issues", values);
-    router.push("/issues");
+    try {
+      const issue = await axios.post("/api/issues", values);
+      router.push("/issues");
+      if (!issue) throw Error;
+    } catch (error) {
+      console.log(error);
+    }
   }
 
   return (
@@ -49,7 +54,7 @@ const NewIssuePage = () => {
                 <FormControl>
                   <Input
                     placeholder="Title"
-                    className="border  border-[#a5aaaf] placeholder:text-[#7E7E86] focus-visible:ring-0 focus-visible:ring-offset-0"
+                    className="border  border-[#a5aaaf] placeholder:font-semibold placeholder:text-[#7E7E86] focus-visible:ring-0 focus-visible:ring-offset-0"
                     {...field}
                   />
                 </FormControl>

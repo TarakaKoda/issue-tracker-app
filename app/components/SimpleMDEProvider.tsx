@@ -1,20 +1,20 @@
 "use client";
 
 import "easymde/dist/easymde.min.css";
-import { ControllerRenderProps } from "react-hook-form";
 import dynamic from "next/dynamic";
+import React from "react";
 
 const SimpleMDE = dynamic(() => import("react-simplemde-editor"), {
   ssr: false,
 });
 
 interface Props {
-  field: ControllerRenderProps;
+  field: any;
 }
 
-const SimpleMDEProvider = ({ field }: Props) => {
+const SimpleMDEProvider = React.forwardRef(({ field }: Props, ref) => {
   return (
-    <div>
+    <div className="min-h-[22rem]">
       <style>
         {`
           /* Override hover color for SimpleMDE buttons */
@@ -24,17 +24,21 @@ const SimpleMDEProvider = ({ field }: Props) => {
           .editor-toolbar.fullscreen button {
             color: black; /* Change to your desired color for buttons in full-screen mode */
           }
-          // .EasyMDEContainer .CodeMirror {
-          //   background-color: #222;
-          //   color: #fff; /* Change to your desired background color */
-          //   caret-color: #fff
-          //   border: 1px solid #222
-          // }
+          .EasyMDEContainer .CodeMirror {
+            background-color: #222;
+            color: #fff; /* Change to your desired background color */
+            caret-color: #fff;
+            border-bottom-left-radius: 0px; 
+            border-bottom-right-radius: 0px;
+            caret-color: #fff !important;
+          }
         `}
       </style>
-      <SimpleMDE placeholder="Description" {...field} />
+      <SimpleMDE placeholder="Description" {...field} ref={ref} />
     </div>
   );
-};
+});
+
+SimpleMDEProvider.displayName = 'SimpleMDEProvider';
 
 export default SimpleMDEProvider;
