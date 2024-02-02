@@ -1,5 +1,6 @@
 "use client";
 import MarkdownEditor from "@/app/components/SimpleMDEProvider";
+import { createIssueSchema } from "@/app/validationSchemas";
 import { Button } from "@/components/ui/button";
 import {
   Form,
@@ -16,25 +17,19 @@ import "easymde/dist/easymde.min.css";
 import { useRouter } from "next/navigation";
 import { useForm } from "react-hook-form";
 import { z } from "zod";
-import createNewIssueSchema from "./schema";
-
-interface IssueForm {
-  title: string;
-  description: string;
-}
 
 const NewIssuePage = () => {
   const { toast } = useToast();
   const router = useRouter();
-  const form = useForm<z.infer<typeof createNewIssueSchema>>({
-    resolver: zodResolver(createNewIssueSchema),
+  const form = useForm<z.infer<typeof createIssueSchema>>({
+    resolver: zodResolver(createIssueSchema),
     defaultValues: {
       title: "",
       description: "",
     },
   });
 
-  async function onSubmit(values: z.infer<typeof createNewIssueSchema>) {
+  async function onSubmit(values: z.infer<typeof createIssueSchema>) {
     try {
       const issue = await axios.post("/api/issues", values);
       router.push("/issues");
