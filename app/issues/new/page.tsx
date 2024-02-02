@@ -1,7 +1,9 @@
 "use client";
+import { LoadingSpinner } from "@/app/components/Loader";
 import MarkdownEditor from "@/app/components/SimpleMDEProvider";
 import { createIssueSchema } from "@/app/validationSchemas";
 import { Button } from "@/components/ui/button";
+import { PiBugBeetleFill } from "react-icons/pi";
 import {
   Form,
   FormControl,
@@ -15,10 +17,12 @@ import { zodResolver } from "@hookform/resolvers/zod";
 import axios from "axios";
 import "easymde/dist/easymde.min.css";
 import { useRouter } from "next/navigation";
+import { useState } from "react";
 import { useForm } from "react-hook-form";
 import { z } from "zod";
 
 const NewIssuePage = () => {
+  const [isSubmitting, setIsSubmitting] = useState(false);
   const { toast } = useToast();
   const router = useRouter();
   const form = useForm<z.infer<typeof createIssueSchema>>({
@@ -31,7 +35,8 @@ const NewIssuePage = () => {
 
   async function onSubmit(values: z.infer<typeof createIssueSchema>) {
     try {
-      const issue = await axios.post("/api/issues", values);
+      setIsSubmitting(true);
+      const issue = await axios.post("/api/issuess", values);
       router.push("/issues");
       toast({
         title: `New Issue: ${issue.data.title}`,
@@ -40,6 +45,7 @@ const NewIssuePage = () => {
       });
       if (!issue) throw Error;
     } catch (error) {
+      setIsSubmitting(false);
       toast({
         title: "Uh oh! Something went wrong.",
         description: "There was a problem with your request.",
@@ -83,7 +89,19 @@ const NewIssuePage = () => {
               </FormItem>
             )}
           />
-          <Button type="submit">Submit New Issue</Button>
+          <Button type="submit" className="flex gap-1" disabled={isSubmitting}>
+            {isSubmitting ? (
+              <>
+                <LoadingSpinner />
+                <p>Creating new issue...</p>
+              </>
+            ) : (
+              <>
+                <PiBugBeetleFill size={15} />
+                <p>Submit New Issue</p>
+              </>
+            )}
+          </Button>
         </form>
       </Form>
     </div>
