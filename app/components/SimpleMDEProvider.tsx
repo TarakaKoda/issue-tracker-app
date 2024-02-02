@@ -17,16 +17,15 @@ const SimpleMDEProvider = React.forwardRef(({ field }: Props, ref) => {
     <div className="min-h-[22rem]">
       <style>
         {`
-          /* Override hover color for SimpleMDE buttons */
           .editor-toolbar button:hover {
-            color: black; /* Change to your desired hover color */
+            color: black; 
           }
           .editor-toolbar.fullscreen button {
-            color: black; /* Change to your desired color for buttons in full-screen mode */
+            color: black; 
           }
           .EasyMDEContainer .CodeMirror {
             background-color: #222;
-            color: #fff; /* Change to your desired background color */
+            color: #fff; 
             caret-color: #fff;
             border-bottom-left-radius: 0px; 
             border-bottom-right-radius: 0px;
