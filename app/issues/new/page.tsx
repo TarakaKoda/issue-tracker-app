@@ -9,13 +9,14 @@ import {
   FormMessage,
 } from "@/components/ui/form";
 import { Input } from "@/components/ui/input";
+import { useToast } from "@/components/ui/use-toast";
 import { zodResolver } from "@hookform/resolvers/zod";
+import axios from "axios";
 import "easymde/dist/easymde.min.css";
+import { useRouter } from "next/navigation";
 import { useForm } from "react-hook-form";
 import { z } from "zod";
 import createNewIssueSchema from "./schema";
-import axios from "axios";
-import { useRouter } from "next/navigation";
 
 interface IssueForm {
   title: string;
@@ -23,6 +24,7 @@ interface IssueForm {
 }
 
 const NewIssuePage = () => {
+  const { toast } = useToast();
   const router = useRouter();
   const form = useForm<z.infer<typeof createNewIssueSchema>>({
     resolver: zodResolver(createNewIssueSchema),
@@ -36,9 +38,19 @@ const NewIssuePage = () => {
     try {
       const issue = await axios.post("/api/issues", values);
       router.push("/issues");
+      toast({
+        title: `New Issue: ${issue.data.title}`,
+        description: "New issue has been created.",
+        variant: "success",
+      });
       if (!issue) throw Error;
     } catch (error) {
-      console.log(error);
+      toast({
+        title: "Uh oh! Something went wrong.",
+        description: "There was a problem with your request.",
+        variant: "destructive",
+      });
+      form.reset();
     }
   }
 
@@ -58,7 +70,7 @@ const NewIssuePage = () => {
                     {...field}
                   />
                 </FormControl>
-                <FormMessage />
+                <FormMessage title="Title" />
               </FormItem>
             )}
           />
@@ -72,7 +84,7 @@ const NewIssuePage = () => {
                     <MarkdownEditor field={{ ...field }} />
                   </div>
                 </FormControl>
-                <FormMessage />
+                <FormMessage title="Description" />
               </FormItem>
             )}
           />
