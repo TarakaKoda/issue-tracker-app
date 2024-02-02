@@ -1,9 +1,18 @@
 "use client";
 
 import "easymde/dist/easymde.min.css";
-import SimpleMDE from "react-simplemde-editor";
+import { ControllerRenderProps } from "react-hook-form";
+import dynamic from "next/dynamic";
 
-const SimpleMDEProvider = () => {
+const SimpleMDE = dynamic(() => import("react-simplemde-editor"), {
+  ssr: false,
+});
+
+interface Props {
+  field: ControllerRenderProps;
+}
+
+const SimpleMDEProvider = ({ field }: Props) => {
   return (
     <div>
       <style>
@@ -23,7 +32,7 @@ const SimpleMDEProvider = () => {
           // }
         `}
       </style>
-      <SimpleMDE placeholder="Description" />
+      <SimpleMDE placeholder="Description" {...field} />
     </div>
   );
 };
