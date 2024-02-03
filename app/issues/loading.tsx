@@ -17,9 +17,6 @@ const LoadingIssuesPage = () => {
     <div className="flex flex-col">
       <IssueAction />
       <Table>
-        <TableCaption className="mb-5 font-semibold uppercase text-foreground">
-          A list of recent issues
-        </TableCaption>
         <TableHeader>
           <TableRow className="uppercase">
             <TableHead className="md:min-w-[13rem]">Issue</TableHead>
@@ -31,23 +28,20 @@ const LoadingIssuesPage = () => {
           {issues.map((issue) => (
             <TableRow key={issue}>
               <TableCell className="font-medium max-md:flex max-md:flex-col max-md:gap-2">
-                <Skeleton className="h-10 w-full bg-[#111] max-md:h-5" />
+                <Skeleton className="h-10 w-full dark:bg-[#111] max-md:h-5 bg-[#f3f3f5]" />
                 <div className="block md:hidden">
-                  <Skeleton className="h-6 max-w-[7rem] bg-[#111]" />
+                  <Skeleton className="h-6 max-w-[7rem] dark:bg-[#111] bg-[#f3f3f5]" />
                 </div>
               </TableCell>
               <TableCell className="hidden md:table-cell">
-                <Skeleton className="h-10 max-min-28 max-w-28 bg-[#111]" />
+                <Skeleton className="h-10 max-min-28 max-w-28 dark:bg-[#111] bg-[#f3f3f5]" />
               </TableCell>
               <TableCell className="hidden md:table-cell">
-                <Skeleton className="h-10 w-full bg-[#111]" />
+                <Skeleton className="h-10 w-full dark:bg-[#111] bg-[#f3f3f5]" />
               </TableCell>
             </TableRow>
           ))}
         </TableBody>
-        <TableFooter>
-          <TableRow>{/* <TableCell colSpan={2}>Total</TableCell> */}</TableRow>
-        </TableFooter>
       </Table>
     </div>
   );

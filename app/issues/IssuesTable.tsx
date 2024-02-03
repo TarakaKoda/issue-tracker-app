@@ -18,9 +18,6 @@ interface Props {
 const IssuesTable = ({ issues }: Props) => {
   return (
     <Table>
-      <TableCaption className="mb-5 font-semibold uppercase text-foreground">
-        A list of recent issues
-      </TableCaption>
       <TableHeader>
         <TableRow className="uppercase">
           <TableHead className="w-auto">Issue</TableHead>
@@ -30,7 +27,10 @@ const IssuesTable = ({ issues }: Props) => {
       </TableHeader>
       <TableBody>
         {issues.map((issue) => (
-          <TableRow key={issue.id}>
+          <TableRow
+            key={issue.id}
+            className="hover:bg-[#f3f3f5] dark:hover:bg-[#111]"
+          >
             <TableCell className="font-medium max-md:flex max-md:flex-col max-md:gap-2">
               {issue.title}
               <div className="block md:hidden">
@@ -46,9 +46,6 @@ const IssuesTable = ({ issues }: Props) => {
           </TableRow>
         ))}
       </TableBody>
-      <TableFooter>
-        <TableRow>{/* <TableCell colSpan={2}>Total</TableCell> */}</TableRow>
-      </TableFooter>
     </Table>
   );
 };
