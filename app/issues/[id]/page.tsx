@@ -1,5 +1,7 @@
+import IssueStatusBadge from "@/app/components/IssueStatusBadge";
 import prisma from "@/prisma/client";
 import { notFound } from "next/navigation";
+import IssueDescriptionCard from "./IssueDescriptionCard";
 
 interface Props {
   params: { id: string };
@@ -16,10 +18,18 @@ const IssueDetailPage = async ({ params: { id } }: Props) => {
 
   return (
     <div>
-      <p>{issue.title}</p>
-      <p>{issue.description}</p>
-      <p>{issue.status}</p>
-      <p>{issue.createdAt.toDateString()}</p>
+      <h1 className="scroll-m-20 text-4xl font-extrabold tracking-tight lg:text-5xl">
+        {issue.title}
+      </h1>
+      <div className="my-2 flex items-center gap-3">
+        <IssueStatusBadge status={issue.status} />
+        <p className="scroll-m-20 text-xl font-semibold tracking-tight">
+          {issue.createdAt.toDateString()}
+        </p>
+      </div>
+      <IssueDescriptionCard
+        cardContent={issue.description}
+      />
     </div>
   );
 };

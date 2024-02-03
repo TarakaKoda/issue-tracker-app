@@ -36,7 +36,7 @@ const NewIssuePage = () => {
   async function onSubmit(values: z.infer<typeof createIssueSchema>) {
     try {
       setIsSubmitting(true);
-      const issue = await axios.post("/api/issuess", values);
+      const issue = await axios.post("/api/issues", values);
       router.push("/issues");
       toast({
         title: `New Issue: ${issue.data.title}`,
@@ -51,7 +51,7 @@ const NewIssuePage = () => {
         description: "There was a problem with your request.",
         variant: "destructive",
       });
-      form.reset();
+      // form.reset();
     }
   }
 

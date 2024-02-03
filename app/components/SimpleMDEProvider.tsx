@@ -17,11 +17,21 @@ const SimpleMDEProvider = React.forwardRef(({ field }: Props, ref) => {
     <div className="min-h-[22rem]">
       <style>
         {`
-          .editor-toolbar button:hover {
-            color: black; 
-          }
+           .editor-toolbar button:hover,
+           .editor-toolbar button:focus,
+           .editor-toolbar button:active {
+             color: black; 
+           }
+           
+           .editor-toolbar button.active {
+            background: none
+           }
+           .editor-toolbar button.active:hover {
+            background: white
+           }
+           
           .editor-toolbar.fullscreen button {
-            color: black; 
+            color: black;
           }
           .EasyMDEContainer .CodeMirror {
             background-color: #222;
@@ -38,6 +48,6 @@ const SimpleMDEProvider = React.forwardRef(({ field }: Props, ref) => {
   );
 });
 
-SimpleMDEProvider.displayName = 'SimpleMDEProvider';
+SimpleMDEProvider.displayName = "SimpleMDEProvider";
 
 export default SimpleMDEProvider;

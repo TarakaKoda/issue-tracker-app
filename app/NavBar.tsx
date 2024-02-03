@@ -15,11 +15,11 @@ const NavBar = () => {
 
   return (
     <nav className="mb-5 flex h-14 items-center justify-between border-b border-darkBackground1 px-5">
-      <div className="flex gap-6">
+      <div className="flex items-center gap-6">
         <Link href="/">
           <AiFillBug className="h-5 w-5" />
         </Link>
-        <ul className="flex gap-6">
+        <ul className="flex gap-6 m-0 list-none">
           {links.map((link) => (
             <li
               key={link.label}
