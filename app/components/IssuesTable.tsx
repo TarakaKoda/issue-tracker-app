@@ -8,18 +8,11 @@ import {
   TableHeader,
   TableRow,
 } from "@/components/ui/table";
-
-interface IssueInterface {
-  id: number;
-  title: string;
-  description: string;
-  status: string;
-  createdAt: Date;
-  updatedAt: Date;
-}
+import { Issue } from "@prisma/client";
+import IssueStatusBadge from "./IssueStatusBadge";
 
 interface Props {
-  issues: IssueInterface[];
+  issues: Issue[];
 }
 
 const IssuesTable = ({ issues }: Props) => {
@@ -40,10 +33,12 @@ const IssuesTable = ({ issues }: Props) => {
           <TableRow key={issue.id}>
             <TableCell className="font-medium">
               {issue.title}
-              <div className="block md:hidden">{issue.status}</div>
+              <div className="block md:hidden">
+                <IssueStatusBadge status={issue.status} />
+              </div>
             </TableCell>
             <TableCell className="hidden md:table-cell">
-              {issue.status}
+            <IssueStatusBadge status={issue.status} />
             </TableCell>
             <TableCell className="hidden md:table-cell">
               {issue.createdAt.toDateString()}
