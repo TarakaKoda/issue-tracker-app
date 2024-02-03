@@ -2,15 +2,16 @@ import { Button } from "@/components/ui/button";
 import Link from "next/link";
 import React from "react";
 import prisma from "@/prisma/client";
-import IssuesTable from "../components/IssuesTable";
+import IssuesTable from "./IssuesTable";
+import delay from "delay";
+import IssueAction from "./IssueAction";
 
 const IssuesPage = async () => {
   const issues = await prisma.issue.findMany();
+  await delay(2000);
   return (
     <div>
-      <Link href="/issues/new">
-        <Button className="btn">New Issue</Button>
-      </Link>
+      <IssueAction/>
       <IssuesTable issues={issues} />
     </div>
   );
