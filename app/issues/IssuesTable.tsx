@@ -1,14 +1,13 @@
 import {
   Table,
   TableBody,
-  TableCaption,
   TableCell,
-  TableFooter,
   TableHead,
   TableHeader,
-  TableRow,
+  TableRow
 } from "@/components/ui/table";
 import { Issue } from "@prisma/client";
+import Link from "next/link";
 import IssueStatusBadge from "../components/IssueStatusBadge";
 
 interface Props {
@@ -32,7 +31,8 @@ const IssuesTable = ({ issues }: Props) => {
             className="hover:bg-[#f3f3f5] dark:hover:bg-[#111]"
           >
             <TableCell className="font-medium max-md:flex max-md:flex-col max-md:gap-2">
-              {issue.title}
+              <Link href={`/issues/${issue.id}`}>{issue.title}</Link>
+
               <div className="block md:hidden">
                 <IssueStatusBadge status={issue.status} />
               </div>
