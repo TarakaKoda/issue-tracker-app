@@ -19,7 +19,7 @@ const NavBar = () => {
         <Link href="/">
           <AiFillBug className="h-5 w-5" />
         </Link>
-        <ul className="flex gap-6 m-0 list-none">
+        <ul className="m-0 mb-2 flex list-none gap-6">
           {links.map((link) => (
             <li
               key={link.label}

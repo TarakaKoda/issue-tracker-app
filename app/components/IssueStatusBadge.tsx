@@ -1,6 +1,12 @@
 import { Badge } from "@/components/ui/badge";
 import { Status } from "@prisma/client";
-import React from "react";
+import { FaStopwatch } from "react-icons/fa6";
+import { HiMiniQuestionMarkCircle } from "react-icons/hi2";
+import { MdDoneOutline } from "react-icons/md";
+import React, { ReactElement } from "react";
+import { TiStopwatch } from "react-icons/ti";
+import { HiOutlineQuestionMarkCircle } from "react-icons/hi";
+import { IoMdStopwatch } from "react-icons/io";
 
 interface Props {
   status: Status;
@@ -8,11 +14,15 @@ interface Props {
 
 const statusMap: Record<
   Status,
-  { label: string; color: "red" | "green" | "violet" }
+  { label: string; color: "red" | "green" | "violet"; symbol: ReactElement }
 > = {
-  OPEN: { label: "Open", color: "red" },
-  IN_PROGRESS: { label: "In Progress", color: "violet" },
-  CLOSED: { label: "closed", color: "green" },
+  OPEN: { label: "Open", color: "red", symbol: <HiOutlineQuestionMarkCircle className="text-sm" /> },
+  IN_PROGRESS: {
+    label: "In Progress",
+    color: "violet",
+    symbol: <IoMdStopwatch className="text-sm" />,
+  },
+  CLOSED: { label: "closed", color: "green", symbol: <MdDoneOutline /> },
 };
 
 const IssueStatusBadge = ({ status }: Props) => {
@@ -30,8 +40,9 @@ const IssueStatusBadge = ({ status }: Props) => {
   };
   return (
     <Badge
-      className={` flex h-8 min-w-28 max-w-28 items-center justify-center rounded-md font-medium uppercase hover:text-white max-md:h-6 max-md:min-w-[7rem] max-md:max-w-[5rem] ${getColorClass(status)}`}
+      className={` flex h-8 min-w-[8rem] max-w-[8rem] items-center justify-center gap-1 rounded-md font-medium uppercase hover:text-white max-md:h-6 max-md:min-w-[7.5rem] max-md:max-w-[5.5rem] ${getColorClass(status)}`}
     >
+      {statusMap[status].symbol}
       <p>{statusMap[status].label}</p>
     </Badge>
   );
