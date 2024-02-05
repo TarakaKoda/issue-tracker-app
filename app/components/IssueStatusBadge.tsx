@@ -1,12 +1,9 @@
 import { Badge } from "@/components/ui/badge";
 import { Status } from "@prisma/client";
-import { FaStopwatch } from "react-icons/fa6";
-import { HiMiniQuestionMarkCircle } from "react-icons/hi2";
-import { MdDoneOutline } from "react-icons/md";
-import React, { ReactElement } from "react";
-import { TiStopwatch } from "react-icons/ti";
+import { ReactElement } from "react";
 import { HiOutlineQuestionMarkCircle } from "react-icons/hi";
 import { IoMdStopwatch } from "react-icons/io";
+import { MdDoneOutline } from "react-icons/md";
 
 interface Props {
   status: Status;

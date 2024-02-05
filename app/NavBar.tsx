@@ -4,7 +4,7 @@ import classnames from "classnames";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
 import { AiFillBug } from "react-icons/ai";
-import DarkModeButton from "./components/DarkModeButton";
+import {DarkModeButton} from "./components";
 
 const NavBar = () => {
   const currentPath = usePathname();

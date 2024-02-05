@@ -6,13 +6,11 @@ import {
   TableHeader,
   TableRow,
 } from "@/components/ui/table";
+import { multiFormatDateString } from "@/lib/utils";
 import { Issue } from "@prisma/client";
 import Link from "next/link";
-import IssueStatusBadge from "../components/IssueStatusBadge";
 import { SlCalender } from "react-icons/sl";
-import ToolTip from "../components/IssueToolTip";
-import IssueToolTip from "../components/IssueToolTip";
-import { multiFormatDateString } from "@/lib/utils";
+import { IssueStatusBadge, IssueToolTip } from "../components";
 
 interface Props {
   issues: Issue[];

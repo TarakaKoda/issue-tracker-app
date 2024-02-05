@@ -1,4 +1,4 @@
-import IssueStatusBadge from "@/app/components/IssueStatusBadge";
+import { IssueStatusBadge } from "@/app/components";
 import prisma from "@/prisma/client";
 import { notFound } from "next/navigation";
 import IssueDescriptionCard from "./IssueDescriptionCard";

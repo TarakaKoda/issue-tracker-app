@@ -1,6 +1,8 @@
 "use client";
-import { LoadingSpinner } from "@/app/components/Loader";
-import MarkdownEditor from "@/app/components/SimpleMDEProvider";
+import {
+  LoadingSpinner,
+  SimpleMDEProvider as MarkdownEditor,
+} from "@/app/components";
 import { createIssueSchema } from "@/app/validationSchemas";
 import { Button } from "@/components/ui/button";
 import {
@@ -34,7 +36,6 @@ const NewIssuePage = () => {
   });
 
   async function onSubmit(values: z.infer<typeof createIssueSchema>) {
-    
     try {
       setIsSubmitting(true);
       const issue = await axios.post("/api/issues", values);
