@@ -9,6 +9,10 @@ import {
 import { Issue } from "@prisma/client";
 import Link from "next/link";
 import IssueStatusBadge from "../components/IssueStatusBadge";
+import { SlCalender } from "react-icons/sl";
+import ToolTip from "../components/IssueToolTip";
+import IssueToolTip from "../components/IssueToolTip";
+import { multiFormatDateString } from "@/lib/utils";
 
 interface Props {
   issues: Issue[];
@@ -43,7 +47,16 @@ const IssuesTable = ({ issues }: Props) => {
               <IssueStatusBadge status={issue.status} />
             </TableCell>
             <TableCell className="hidden md:table-cell">
-              {issue.createdAt.toDateString()}
+              <p className="flex max-w-44 items-center justify-evenly rounded-md border border-[#d3d3d5] py-2 text-center leading-7 transition-colors hover:border-foreground hover:bg-foreground hover:text-background dark:border-[#333] dark:hover:text-black [&:not(:first-child)]:mt-6">
+                <IssueToolTip
+                  toolTipContent={multiFormatDateString(
+                    issue.createdAt.toDateString(),
+                  )}
+                >
+                  <SlCalender />
+                </IssueToolTip>
+                {issue.createdAt.toDateString()}
+              </p>
             </TableCell>
           </TableRow>
         ))}

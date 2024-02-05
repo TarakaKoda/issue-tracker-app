@@ -3,7 +3,6 @@ import { LoadingSpinner } from "@/app/components/Loader";
 import MarkdownEditor from "@/app/components/SimpleMDEProvider";
 import { createIssueSchema } from "@/app/validationSchemas";
 import { Button } from "@/components/ui/button";
-import { PiBugBeetleFill } from "react-icons/pi";
 import {
   Form,
   FormControl,
@@ -19,6 +18,7 @@ import "easymde/dist/easymde.min.css";
 import { useRouter } from "next/navigation";
 import { useState } from "react";
 import { useForm } from "react-hook-form";
+import { PiBugBeetleFill } from "react-icons/pi";
 import { z } from "zod";
 
 const NewIssuePage = () => {
@@ -34,6 +34,7 @@ const NewIssuePage = () => {
   });
 
   async function onSubmit(values: z.infer<typeof createIssueSchema>) {
+    
     try {
       setIsSubmitting(true);
       const issue = await axios.post("/api/issues", values);
