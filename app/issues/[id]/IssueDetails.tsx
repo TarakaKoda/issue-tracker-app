@@ -8,7 +8,7 @@ interface Props {
 
 const IssueDetails = ({ issue }: Props) => {
   return (
-    <div className="flex flex-col gap-3 md:gap-5">
+    <div className="flex flex-col md:col-span-4 gap-3 md:gap-5">
       <h1 className="scroll-m-20 text-4xl font-extrabold tracking-tight lg:text-5xl">
         {issue.title}
       </h1>
