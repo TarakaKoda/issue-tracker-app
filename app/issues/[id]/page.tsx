@@ -1,8 +1,9 @@
 import prisma from "@/prisma/client";
 import { notFound } from "next/navigation";
+import IssueDeleteButton from "./IssueDeleteButton";
 import IssueDetails from "./IssueDetails";
 import IssueEditButton from "./IssueEditButton";
-import IssueDeleteButton from "./IssueDeleteButton";
+import IssueDeleteAlertDialogue from "./issueDeleteAlertDialogue";
 
 interface Props {
   params: { id: string };
@@ -20,9 +21,11 @@ const IssueDetailPage = async ({ params: { id } }: Props) => {
   return (
     <div className="grid grid-cols-1 max-md:gap-5 md:grid-cols-5">
       <IssueDetails issue={issue} />
-      <div className="flex md:flex-col md:justify-self-end gap-3 max-w-36">
+      <div className="flex max-w-36 gap-3 md:flex-col md:justify-self-end">
         <IssueEditButton issueId={issue.id} />
-        <IssueDeleteButton issueId={issue.id} />
+        <IssueDeleteAlertDialogue issue={issue}>
+          <IssueDeleteButton issueId={issue.id} />
+        </IssueDeleteAlertDialogue>
       </div>
     </div>
   );
