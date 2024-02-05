@@ -1,4 +1,3 @@
-
 const IssueNotFound = () => {
   return <div>IssueNotFound</div>;
 };
