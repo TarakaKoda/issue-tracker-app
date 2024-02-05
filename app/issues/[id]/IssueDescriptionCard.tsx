@@ -24,7 +24,7 @@ const IssueDescriptionCard = ({
 }: Props) => {
   return (
     <Card className="border dark:border-[#444] max-w-5xl dark:bg-darkBackground1">
-      <CardContent className="flex flex-col pt-5">
+      <CardContent className="flex flex-col pt-5 gap-2">
         <ReactMarKdown>{cardContent}</ReactMarKdown>
       </CardContent>
     </Card>
