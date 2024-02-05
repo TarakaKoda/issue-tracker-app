@@ -3,7 +3,7 @@ import { notFound } from "next/navigation";
 import IssueDeleteButton from "./IssueDeleteButton";
 import IssueDetails from "./IssueDetails";
 import IssueEditButton from "./IssueEditButton";
-import IssueDeleteAlertDialogue from "./issueDeleteAlertDialogue";
+import IssueDeleteAlertDialogue from "./IssueDeleteAlertDialogue";
 
 interface Props {
   params: { id: string };

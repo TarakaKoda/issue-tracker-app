@@ -17,7 +17,7 @@ import axios from "axios";
 import { useRouter } from "next/navigation";
 import { ReactNode } from "react";
 
-const issueDeleteAlertDialogue = ({
+const IssueDeleteAlertDialogue = ({
   children,
   issue,
 }: {
@@ -73,4 +73,4 @@ const issueDeleteAlertDialogue = ({
   );
 };
 
-export default issueDeleteAlertDialogue;
+export default IssueDeleteAlertDialogue;
