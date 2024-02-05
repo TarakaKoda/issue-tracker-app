@@ -6,6 +6,7 @@ const LoadingEditIssuePage = () => {
       <div className="space-y-8">
         <Skeleton className="h-10 w-full bg-[#f3f3f5] dark:bg-[#333] " />
         <Skeleton className="h-[25rem] w-full bg-[#f3f3f5] dark:bg-[#333] " />
+        <Skeleton className="h-10 w-full bg-[#f3f3f5] dark:bg-[#333] " />
         <Skeleton className="h-10 w-44 bg-[#f3f3f5]  dark:bg-[#333]" />
       </div>
     </div>

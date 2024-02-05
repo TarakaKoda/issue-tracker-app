@@ -13,6 +13,15 @@ import {
   FormMessage,
 } from "@/components/ui/form";
 import { Input } from "@/components/ui/input";
+import {
+  Select,
+  SelectContent,
+  SelectGroup,
+  SelectItem,
+  SelectLabel,
+  SelectTrigger,
+  SelectValue,
+} from "@/components/ui/select";
 import { useToast } from "@/components/ui/use-toast";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { Issue } from "@prisma/client";
@@ -38,6 +47,7 @@ const IssueForm = ({ issue, updatingIssue = false }: Props) => {
     defaultValues: {
       title: issue?.title || "",
       description: issue?.description || "",
+      status: issue?.status || "OPEN",
     },
   });
 
@@ -124,6 +134,35 @@ const IssueForm = ({ issue, updatingIssue = false }: Props) => {
               </FormItem>
             )}
           />
+          {updatingIssue && (
+            <FormField
+              control={form.control}
+              name="status"
+              render={({ field }) => (
+                <FormItem>
+                  <Select
+                    onValueChange={field.onChange}
+                    defaultValue={field.value}
+                  >
+                    <FormControl>
+                      <SelectTrigger>
+                        <SelectValue placeholder="Update the status of the issue." />
+                      </SelectTrigger>
+                    </FormControl>
+                    <SelectContent className="bg-background dark:border-[#222]">
+                      <SelectGroup>
+                        <SelectLabel>Current Issue Status</SelectLabel>
+                        <SelectItem value="OPEN">Open</SelectItem>
+                        <SelectItem value="IN_PROGRESS">In Progress</SelectItem>
+                        <SelectItem value="CLOSED">Closed</SelectItem>
+                      </SelectGroup>
+                    </SelectContent>
+                  </Select>
+                  <FormMessage />
+                </FormItem>
+              )}
+            />
+          )}
           <Button type="submit" className="flex gap-1" disabled={isSubmitting}>
             {isSubmitting ? (
               <>
