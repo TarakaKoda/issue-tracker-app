@@ -103,7 +103,7 @@ const IssueForm = ({ issue, updatingIssue = false }: Props) => {
   }
 
   return (
-    <div className="max-w-xl space-y-3 rounded-xl bg-[#ececec] p-5 dark:bg-[#111]">
+    <div className="space-y-3 h-min w-full rounded-xl bg-[#ececec] p-5 dark:bg-[#111]">
       <Form {...form}>
         <form onSubmit={form.handleSubmit(onSubmit)} className="space-y-8">
           <FormField

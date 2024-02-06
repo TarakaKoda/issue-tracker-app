@@ -41,6 +41,12 @@ const SimpleMDEProvider = React.forwardRef(({ field }: Props, ref) => {
             border-bottom-right-radius: 0px;
             caret-color: #fff !important;
           }
+          .editor-preview-full {
+            color: black
+          }
+          .editor-preview-side {
+            color: black
+          }
         `}
       </style>
       <SimpleMDE placeholder="Description" {...field} ref={ref} />
