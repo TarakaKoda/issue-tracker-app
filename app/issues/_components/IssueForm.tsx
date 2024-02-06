@@ -163,7 +163,7 @@ const IssueForm = ({ issue, updatingIssue = false }: Props) => {
               )}
             />
           )}
-          <Button type="submit" className="flex gap-1" disabled={isSubmitting}>
+          <Button type="submit" className="flex gap-1 hover:bg-[#222] dark:hover:bg-gray-200" disabled={isSubmitting}>
             {isSubmitting ? (
               <>
                 <LoadingSpinner />

@@ -21,7 +21,7 @@ const IssueDetailPage = async ({ params: { id } }: Props) => {
   return (
     <div className="grid grid-cols-1 max-md:gap-5 md:grid-cols-5">
       <IssueDetails issue={issue} />
-      <div className="flex max-w-36 gap-3 md:flex-col md:justify-self-end">
+      <div className="flex gap-3 max-sm:flex-col md:max-w-36 md:flex-col md:justify-self-end">
         <IssueEditButton issueId={issue.id} />
         <IssueDeleteAlertDialogue issue={issue}>
           <IssueDeleteButton issueId={issue.id} />
