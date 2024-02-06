@@ -1,5 +1,6 @@
 "use client";
 
+import { LoadingSpinner } from "@/app/components";
 import {
   AlertDialog,
   AlertDialogAction,
@@ -11,24 +12,22 @@ import {
   AlertDialogTitle,
   AlertDialogTrigger,
 } from "@/components/ui/alert-dialog";
+import { Button } from "@/components/ui/button";
 import { useToast } from "@/components/ui/use-toast";
 import { Issue } from "@prisma/client";
 import axios from "axios";
 import { useRouter } from "next/navigation";
-import { ReactNode, useState } from "react";
+import { useState } from "react";
+import { MdDeleteOutline } from "react-icons/md";
 
-const IssueDeleteAlertDialogue = ({
-  children,
-  issue,
-}: {
-  children: ReactNode;
-  issue: Issue;
-}) => {
+const IssueDeleteAlertDialogue = ({ issue }: { issue: Issue }) => {
   const [error, setError] = useState(false);
+  const [isDeleting, setIsDeleting] = useState(false);
   const router = useRouter();
   const { toast } = useToast();
   const handleDeleteIssue = async () => {
     try {
+      setIsDeleting(true);
       await axios.delete(`/api/issues/${issue.id}`);
       router.push("/issues");
       router.refresh();
@@ -38,6 +37,7 @@ const IssueDeleteAlertDialogue = ({
         variant: "success",
       });
     } catch (error) {
+      setIsDeleting(false);
       setError(true);
       console.log(error);
     }
@@ -46,17 +46,33 @@ const IssueDeleteAlertDialogue = ({
   return (
     <>
       <AlertDialog>
-        <AlertDialogTrigger asChild>{children}</AlertDialogTrigger>
+        <AlertDialogTrigger asChild>
+          <Button className="flex justify-around gap-2 border border-red-500 bg-red-500 text-white hover:bg-red-600 dark:bg-red-500/80  dark:hover:bg-red-500 max-md:justify-center">
+            {isDeleting ? (
+              <>
+                <LoadingSpinner />
+                Deleting issue ...
+              </>
+            ) : (
+              <>
+                <MdDeleteOutline className="text-lg" />
+                Delete Issue
+              </>
+            )}
+          </Button>
+        </AlertDialogTrigger>
         <AlertDialogContent className="border border-[#222]">
           <AlertDialogHeader>
-            <AlertDialogTitle className="border-b-[#222]">Are you absolutely sure?</AlertDialogTitle>
+            <AlertDialogTitle className="border-b-[#222]">
+              Are you absolutely sure?
+            </AlertDialogTitle>
             <AlertDialogDescription className="text-[#777]">
               This action cannot be undone. This will permanently delete your
               issue and remove your data from our servers.
             </AlertDialogDescription>
           </AlertDialogHeader>
           <AlertDialogFooter>
-            <AlertDialogCancel className="bg-background border-[#222] transition-colors hover:bg-[#222]">
+            <AlertDialogCancel className="border-[#222] bg-background transition-colors hover:bg-[#222]">
               Cancel
             </AlertDialogCancel>
             <AlertDialogAction
