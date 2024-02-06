@@ -6,7 +6,7 @@ import {
   TableHeader,
   TableRow,
 } from "@/components/ui/table";
-import { multiFormatDateString } from "@/lib/utils";
+import { formatDateString, multiFormatDateString } from "@/lib/utils";
 import { Issue } from "@prisma/client";
 import Link from "next/link";
 import { SlCalender } from "react-icons/sl";
@@ -47,13 +47,13 @@ const IssuesTable = ({ issues }: Props) => {
             <TableCell className="hidden md:table-cell">
               <p className="flex max-w-44 items-center justify-evenly rounded-md border border-[#d3d3d5] py-2 text-center leading-7 transition-colors hover:border-foreground hover:bg-foreground hover:text-background dark:border-[#333] dark:hover:text-black [&:not(:first-child)]:mt-6">
                 <IssueToolTip
-                  toolTipContent={`Created ${multiFormatDateString(
-                    issue.createdAt.toDateString(),
+                  toolTipContent={`Updated ${multiFormatDateString(
+                    issue.updatedAt.toISOString(),
                   )}`}
                 >
                   <SlCalender />
                 </IssueToolTip>
-                {issue.createdAt.toDateString()}
+                {formatDateString(issue.createdAt.toISOString())}
               </p>
             </TableCell>
           </TableRow>

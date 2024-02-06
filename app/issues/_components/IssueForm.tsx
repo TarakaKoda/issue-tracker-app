@@ -30,6 +30,8 @@ import "easymde/dist/easymde.min.css";
 import { useRouter } from "next/navigation";
 import { useState } from "react";
 import { useForm } from "react-hook-form";
+import { AiOutlineFileDone } from "react-icons/ai";
+import { GrDocumentUpdate } from "react-icons/gr";
 import { PiBugBeetleFill } from "react-icons/pi";
 import { z } from "zod";
 
@@ -163,7 +165,11 @@ const IssueForm = ({ issue, updatingIssue = false }: Props) => {
               )}
             />
           )}
-          <Button type="submit" className="flex gap-1 hover:bg-[#222] dark:hover:bg-gray-200" disabled={isSubmitting}>
+          <Button
+            type="submit"
+            className="flex gap-1 hover:bg-[#222] dark:hover:bg-gray-200"
+            disabled={isSubmitting}
+          >
             {isSubmitting ? (
               <>
                 <LoadingSpinner />
@@ -172,7 +178,11 @@ const IssueForm = ({ issue, updatingIssue = false }: Props) => {
             ) : (
               <>
                 <>
-                  <PiBugBeetleFill size={15} />
+                  {updatingIssue ? (
+                    <GrDocumentUpdate />
+                  ) : (
+                    <AiOutlineFileDone className="text-lg" />
+                  )}
                   <p>{updatingIssue ? "Update" : "Submit New"} Issue</p>
                 </>
               </>

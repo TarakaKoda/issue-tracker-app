@@ -1,6 +1,7 @@
 import { IssueStatusBadge } from "@/app/components";
 import IssueDescriptionCard from "./IssueDescriptionCard";
 import { Issue } from "@prisma/client";
+import { formatDateString } from "@/lib/utils";
 
 interface Props {
   issue: Issue;
@@ -8,14 +9,14 @@ interface Props {
 
 const IssueDetails = ({ issue }: Props) => {
   return (
-    <div className="flex flex-col md:col-span-4 gap-3 md:gap-5">
+    <div className="flex flex-col gap-3 md:col-span-4 md:gap-5">
       <h1 className="scroll-m-20 text-4xl font-extrabold tracking-tight lg:text-5xl">
         {issue.title}
       </h1>
       <div className="flex items-center gap-3">
         <IssueStatusBadge status={issue.status} />
         <p className="scroll-m-20 text-lg font-semibold tracking-tight sm:text-xl">
-          {issue.createdAt.toDateString()}
+          {formatDateString(issue.createdAt.toISOString())}
         </p>
       </div>
       <IssueDescriptionCard cardContent={issue.description} />

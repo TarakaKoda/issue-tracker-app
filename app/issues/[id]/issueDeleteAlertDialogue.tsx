@@ -47,15 +47,18 @@ const IssueDeleteAlertDialogue = ({ issue }: { issue: Issue }) => {
     <>
       <AlertDialog>
         <AlertDialogTrigger asChild>
-          <Button className="flex justify-around gap-2 border border-red-500 bg-red-500 text-white hover:bg-red-600 dark:bg-red-500/80  dark:hover:bg-red-500 max-md:justify-center">
+          <Button
+            disabled={isDeleting}
+            className="flex md:min-w-[10rem] justify-center gap-1 border border-red-500 bg-red-500 text-white hover:bg-red-600 dark:bg-red-500/80  dark:hover:bg-red-500 max-md:justify-center"
+          >
             {isDeleting ? (
               <>
-                <LoadingSpinner />
-                Deleting issue ...
+                <LoadingSpinner/>
+                Deleting issue...
               </>
             ) : (
               <>
-                <MdDeleteOutline className="text-lg" />
+                <MdDeleteOutline className="text-lg"/>
                 Delete Issue
               </>
             )}
@@ -72,7 +75,7 @@ const IssueDeleteAlertDialogue = ({ issue }: { issue: Issue }) => {
             </AlertDialogDescription>
           </AlertDialogHeader>
           <AlertDialogFooter>
-            <AlertDialogCancel className="border-[#222] bg-background transition-colors hover:bg-[#222]">
+            <AlertDialogCancel className="dark:border-[#222] hover:text-white bg-background transition-colors hover:bg-[#222]">
               Cancel
             </AlertDialogCancel>
             <AlertDialogAction

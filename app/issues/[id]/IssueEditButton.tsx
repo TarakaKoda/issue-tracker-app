@@ -9,7 +9,7 @@ interface Props {
 
 const IssueEditButton = ({ issueId, titleType = "Edit" }: Props) => {
   return (
-    <Button className="flex justify-around gap-2 hover:bg-[#222] dark:hover:bg-gray-100 max-md:justify-center">
+    <Button className="flex md:min-w-[10rem] justify-center gap-2 hover:bg-[#222] dark:hover:bg-gray-100 max-md:justify-center">
       {" "}
       <Pencil2Icon />
       <Link href={`/issues/${issueId}/edit`}>{titleType} Issue</Link>
