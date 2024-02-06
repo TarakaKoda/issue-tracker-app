@@ -17,7 +17,7 @@ const IssueDetailPage = async ({ params: { id } }: Props) => {
   if (!issue) notFound();
 
   return (
-    <div className="grid grid-cols-1 max-md:gap-5 md:grid-cols-5">
+    <div className="grid grid-cols-1 max-lg:gap-5 lg:grid-cols-5">
       <IssueDetails issue={issue} />
       <IssueDeleteContainer issue={issue} />
     </div>

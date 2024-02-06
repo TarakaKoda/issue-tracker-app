@@ -37,7 +37,7 @@ const IssueStatusBadge = ({ status }: Props) => {
   };
   return (
     <Badge
-      className={` flex h-8 min-w-[8rem] max-w-[8rem] items-center justify-center gap-1 rounded-md font-medium uppercase hover:text-white max-md:h-6 max-md:min-w-[7.5rem] max-md:max-w-[5.5rem] ${getColorClass(status)}`}
+      className={` flex text-nowrap w-36 h-10 items-center justify-center gap-1 rounded-md font-medium uppercase hover:text-white  ${getColorClass(status)}`}
     >
       {statusMap[status].symbol}
       <p>{statusMap[status].label}</p>

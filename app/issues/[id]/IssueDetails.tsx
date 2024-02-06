@@ -1,7 +1,8 @@
-import { IssueStatusBadge } from "@/app/components";
+import { IssueStatusBadge, IssueToolTip } from "@/app/components";
 import IssueDescriptionCard from "./IssueDescriptionCard";
 import { Issue } from "@prisma/client";
-import { formatDateString } from "@/lib/utils";
+import { formatDateString, multiFormatDateString } from "@/lib/utils";
+import { SlCalender } from "react-icons/sl";
 
 interface Props {
   issue: Issue;
@@ -9,15 +10,22 @@ interface Props {
 
 const IssueDetails = ({ issue }: Props) => {
   return (
-    <div className="flex flex-col gap-3 md:col-span-4 md:gap-5">
-      <h1 className="scroll-m-20 text-4xl font-extrabold tracking-tight lg:text-5xl">
+    <div className="flex flex-col gap-4 lg:col-span-4 lg:gap-5">
+      <h1 className="scroll-m-20 text-4xl font-extrabold tracking-tight max-sm:mb-4 max-sm:text-center lg:text-5xl">
         {issue.title}
       </h1>
-      <div className="flex items-center gap-3">
+      <div className="flex items-center gap-5 max-sm:flex-col max-sm:items-start max-sm:gap-3">
         <IssueStatusBadge status={issue.status} />
-        <p className="scroll-m-20 text-lg font-semibold tracking-tight sm:text-xl">
-          {formatDateString(issue.createdAt.toISOString())}
-        </p>
+        <div className="flex  items-center gap-2">
+          <IssueToolTip
+            toolTipContent={`Last updated: ${multiFormatDateString(issue.updatedAt.toISOString())}`}
+          >
+            <SlCalender />
+          </IssueToolTip>
+          <p className="scroll-m-20 text-lg font-semibold tracking-tight max-md:text-center sm:text-xl">
+            {formatDateString(issue.createdAt.toISOString())}
+          </p>
+        </div>
       </div>
       <IssueDescriptionCard cardContent={issue.description} />
     </div>
