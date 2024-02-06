@@ -14,7 +14,7 @@ const NavBar = () => {
   ];
 
   return (
-    <nav className="mb-5 flex h-14 items-center min-w-[25.9rem] justify-between border-b border-darkBackground1 px-5">
+    <nav className="mb-5 flex h-14 items-center justify-between border-b border-darkBackground1 px-5">
       <div className="flex items-center gap-6">
         <Link href="/">
           <AiFillBug className="h-5 w-5" />

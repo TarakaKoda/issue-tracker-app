@@ -9,7 +9,7 @@
     --background-end-rgb: 255, 255, 255;
 
     --background: #fff;
-    --foreground: #0C0A09;
+    --foreground: #0c0a09;
 
     --background-1: #f4f4f5;
 
@@ -42,7 +42,7 @@
   }
 
   .dark {
-    --background: #0C0A09;
+    --background: #0c0a09;
     --foreground: #fff;
 
     --background-1: #222;
@@ -83,27 +83,31 @@
   }
 
   h1 {
-    @apply scroll-m-20 text-4xl font-extrabold tracking-tight lg:text-5xl;
+    @apply scroll-m-20 text-4xl font-extrabold tracking-tight max-sm:text-sm lg:text-5xl;
   }
   h2 {
-    @apply scroll-m-20 text-3xl font-semibold tracking-tight;
+    @apply scroll-m-20 text-3xl font-semibold tracking-tight max-sm:text-sm;
   }
 
   h3 {
-    @apply scroll-m-20 text-2xl font-semibold tracking-tight;
+    @apply scroll-m-20 text-2xl font-semibold tracking-tight max-sm:text-sm;
   }
 
   h4 {
-    @apply scroll-m-20 text-xl font-semibold tracking-tight;
+    @apply scroll-m-20 text-xl font-semibold tracking-tight max-sm:text-sm;
   }
 
   ul {
-    @apply my-6 ml-6 list-disc [&>li]:mt-2;
+    @apply my-6 ml-6 list-disc [&>li]:mt-2 max-sm:text-sm;
+  }
+
+  p {
+    @apply max-sm:text-sm;
   }
 }
 
 @layer utilities {
   .link {
-    @apply  hover:underline hover:underline-offset-2 cursor-pointer;
+    @apply cursor-pointer hover:underline hover:underline-offset-2;
   }
 }

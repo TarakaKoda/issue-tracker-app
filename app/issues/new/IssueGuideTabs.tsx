@@ -32,28 +32,28 @@ const IssueGuideTabs = () => {
   return (
     <Tabs defaultValue="issue" className="h-auto w-full">
       <TabsList className="grid w-full grid-cols-2 bg-[#f3f3f3] dark:bg-[#222]">
-        <TabsTrigger value="issue" className="uppercase max-sm:text-xs dark:text-white">
+        <TabsTrigger value="issue" className="uppercase max-sm:text-[0.5rem] dark:text-white">
           Issue Formatting Guide
         </TabsTrigger>
-        <TabsTrigger value="markdown" className="uppercase max-sm:text-xs dark:text-white">
-          Markdown Guide
+        <TabsTrigger value="markdown" className="uppercase max-sm:text-[0.5rem] dark:text-white">
+          Markdown GuideF
         </TabsTrigger>
       </TabsList>
       <TabsContent value="issue">
         <Card className="dark:border-[#222] dark:bg-[#222]">
           <CardHeader>
-            <CardTitle>Create New Issue</CardTitle>
-            <CardDescription className="dark:text-[#999]">
+            <CardTitle className="max-sm:text-sm">Create New Issue</CardTitle>
+            <CardDescription className="dark:text-[#999] max-sm:text-sm">
               Creating Clear and Consistent Issue Descriptions
             </CardDescription>
           </CardHeader>
           <CardContent className="flex flex-col gap-5">
             <div className="flex flex-col gap-3 space-y-1">
-              <h1>Issue Formatting Guide</h1>
+              <h1 className="max-sm:text-sm">Issue Formatting Guide</h1>
               <Separator className="my-4" />
               <div>
-                <h2>Creating a New Issue</h2>
-                <p>To create a new issue, follow these steps:</p>
+                <h2 className="max-sm:text-sm">Creating a New Issue</h2>
+                <p className="max-sm:text-sm">To create a new issue, follow these steps:</p>
               </div>
               <Separator className="my-4" />
               <div>
@@ -66,8 +66,8 @@ const IssueGuideTabs = () => {
               <Separator className="my-4" />
               <div className="my-10 flex flex-col gap-2">
                 <p className="font-bold">Example:</p>
-                <div className="w-full rounded-lg border bg-background p-5 dark:border-[#333]">
-                  <h1>Issue Title: [Brief description of the issue]</h1>
+                <div className="rounded-lg border bg-background p-5 dark:border-[#333]">
+                  <h1 className="max-sm:text-sm">Issue Title: [Brief description of the issue]</h1>
                 </div>
               </div>
               <Separator className="my-4" />
@@ -79,7 +79,7 @@ const IssueGuideTabs = () => {
                   and concise.
                 </p>
               </div>
-              <div className="my-10 flex flex-col gap-3">
+              <div className="my-10 flex w-full flex-col gap-3">
                 <p className="font-bold">Example:</p>
                 <div className="w-full rounded-lg border bg-background p-5 dark:border-[#333]">
                   <p className="font-bold">Description:</p>
@@ -102,7 +102,7 @@ const IssueGuideTabs = () => {
                 <p className="font-bold">Example:</p>
                 <div className="w-full rounded-lg border bg-background p-5 dark:border-[#333]">
                   <p className="font-bold">Steps to Reproduce:</p>
-                  <ul className="-my-1 list-decimal">
+                  <ul className="-my-1 max-sm:text-sm list-decimal">
                     <li>
                       Navigate to the product categories section of the website.
                     </li>
@@ -145,7 +145,7 @@ const IssueGuideTabs = () => {
                   <p className="font-bold">Actual Behavior:</p>
                   <p>
                     Some product categories are missing from the navigation
-                    menu, limiting users' ability to browse products
+                    menu, limiting users&apos; ability to browse products
                     efficiently.
                   </p>
                 </div>
@@ -162,8 +162,8 @@ const IssueGuideTabs = () => {
       <TabsContent value="markdown">
         <Card className="dark:border-[#222] dark:bg-[#222]">
           <CardHeader>
-            <CardTitle>Markdown Guide</CardTitle>
-            <CardDescription className="dark:text-[#999]">
+            <CardTitle className="max-sm:text-sm">Markdown Guide</CardTitle>
+            <CardDescription className="dark:text-[#999] max-sm:text-sm">
               Mastering Markdown Syntax for Effective Formatting
             </CardDescription>
           </CardHeader>
@@ -194,7 +194,7 @@ const IssueGuideTabs = () => {
                 </div>
               </div>
               <Separator className="my-4" />
-              <div className="flex flex-col gap-1">
+              <div className="flex w-full flex-col gap-1">
                 <h2>Creating Blockquotes</h2>
                 <div className="flex items-center gap-3">
                   <p className="font-bold">Feature Icon:</p>
@@ -286,7 +286,7 @@ const IssueGuideTabs = () => {
               <div className="my-10 flex flex-col gap-3">
                 <p className="font-bold">Example:</p>
                 <div className="w-full rounded-lg border bg-background p-5 dark:border-[#333]">
-                  <p>[Google](https://www.google.com)</p>
+                  <p className="max-sm:text-xs text-wrap">[Google]<br className="hidden max-sm:block"/>(https://www.google.com)</p>
                 </div>
               </div>
               <Separator className="my-4" />
@@ -303,7 +303,7 @@ const IssueGuideTabs = () => {
               <div className="my-10 flex flex-col gap-3">
                 <p className="font-bold">Example:</p>
                 <div className="w-full rounded-lg border bg-background p-5 dark:border-[#333]">
-                  <p>![Image Alt Text](https://example.com/image.jpg)</p>
+                  <p className="max-sm:text-xs text-wrap">![Image Alt Text](https://example.<br className="hidden max-sm:block"/>com/image.jpg)</p>
                 </div>
               </div>
               <Separator className="my-4" />
@@ -377,7 +377,7 @@ const IssueGuideTabs = () => {
                 />
               </div>
               <Separator className="my-4" />
-              <div>
+              <div className="w-full">
                 <h3>Toggling Full Screen</h3>
                 <div className="flex items-center gap-3">
                   <p className="font-bold">Feature Icon:</p>
@@ -393,7 +393,7 @@ const IssueGuideTabs = () => {
                 />
               </div>
               <Separator className="my-4" />
-              <div>
+              <div className="flex w-full flex-col gap-2">
                 <h3>Markdown Guide</h3>
                 <div className="flex items-center gap-3">
                   <p className="font-bold">Feature Icon:</p>
