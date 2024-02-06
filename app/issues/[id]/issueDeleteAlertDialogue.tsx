@@ -13,7 +13,7 @@ import {
 } from "@/components/ui/alert-dialog";
 import { useToast } from "@/components/ui/use-toast";
 import { Issue } from "@prisma/client";
-import axios, { AxiosError } from "axios";
+import axios from "axios";
 import { useRouter } from "next/navigation";
 import { ReactNode, useState } from "react";
 
@@ -69,9 +69,11 @@ const IssueDeleteAlertDialogue = ({
         </AlertDialogContent>
       </AlertDialog>
       <AlertDialog open={error}>
-        <AlertDialogContent className="bg-red-500/15 border border-red-500">
+        <AlertDialogContent className="border border-red-500 bg-red-500/15">
           <AlertDialogHeader>
-            <AlertDialogTitle className="border-b-0 text-red-500">Uh oh! Something went wrong.</AlertDialogTitle>
+            <AlertDialogTitle className="border-b-0 text-red-500">
+              Uh oh! Something went wrong.
+            </AlertDialogTitle>
             <AlertDialogDescription className="text-red-500">
               There was a problem with your request.
             </AlertDialogDescription>
