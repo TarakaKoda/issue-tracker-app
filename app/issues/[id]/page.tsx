@@ -1,4 +1,4 @@
-import prisma from "@/prisma/client";
+import {prisma} from "@/prisma/client";
 import { notFound } from "next/navigation";
 import IssueDeleteContainer from "./IssueDeleteContainer";
 import IssueDetails from "./IssueDetails";

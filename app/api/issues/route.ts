@@ -1,5 +1,5 @@
 import { issueSchema } from "@/app/validationSchemas";
-import prisma from "@/prisma/client";
+import { prisma } from "@/prisma/client";
 import { NextRequest, NextResponse } from "next/server";
 
 export async function POST(request: NextRequest) {
@@ -19,4 +19,3 @@ export async function POST(request: NextRequest) {
 
   return NextResponse.json(newIssue, { status: 201 });
 }
-
