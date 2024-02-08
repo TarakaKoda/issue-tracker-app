@@ -6,7 +6,7 @@ const IssuesPage = async () => {
   const issues = await prisma.issue.findMany();
 
   return (
-    <div>
+    <div className="w-full">
       <IssueAction />
       <IssuesTable issues={issues} />
     </div>

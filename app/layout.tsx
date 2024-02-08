@@ -20,7 +20,10 @@ export default function RootLayout({
 }) {
   return (
     <html lang="en">
-      <body suppressHydrationWarning={true} className={inter.className}>
+      <body
+        suppressHydrationWarning={true}
+        className={`${inter.className} flex w-[100vw] flex-col items-center`}
+      >
         <AuthProvider>
           <ThemeProvider
             attribute="class"
@@ -29,7 +32,7 @@ export default function RootLayout({
             disableTransitionOnChange
           >
             <NavBar />
-            <main className="p-5">{children}</main>
+            <main className="w-full max-w-[96rem] p-5">{children}</main>
             <Toaster />
           </ThemeProvider>
         </AuthProvider>

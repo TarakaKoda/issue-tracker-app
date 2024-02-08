@@ -14,7 +14,7 @@ import IssueAction from "./IssueAction";
 const LoadingIssuesPage = () => {
   const issues = [1, 2, 3, 5, 6, 7, 9, 10];
   return (
-    <div className="flex flex-col">
+    <div className="flex flex-col w-full">
       <IssueAction />
       <Table>
         <TableHeader>
