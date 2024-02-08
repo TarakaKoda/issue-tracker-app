@@ -40,15 +40,15 @@ const IssueGuideTabs = () => {
         </TabsTrigger>
       </TabsList>
       <TabsContent value="issue">
-        <Card className="dark:border-[#222] dark:bg-[#222]">
+        <Card className="dark:border-[#222] w-full dark:bg-[#222]">
           <CardHeader>
             <CardTitle className="max-sm:text-sm">Create New Issue</CardTitle>
             <CardDescription className="dark:text-[#999] max-sm:text-sm">
               Creating Clear and Consistent Issue Descriptions
             </CardDescription>
           </CardHeader>
-          <CardContent className="flex flex-col gap-5">
-            <div className="flex flex-col gap-3 space-y-1">
+          <CardContent className="flex w-full max-w-[20rem] flex-col gap-5">
+            <div className="flex flex-col max-w-[20rem] gap-3 space-y-1">
               <h1 className="max-sm:text-sm">Issue Formatting Guide</h1>
               <Separator className="my-4" />
               <div>
@@ -64,7 +64,7 @@ const IssueGuideTabs = () => {
                 </p>
               </div>
               <Separator className="my-4" />
-              <div className="my-10 flex flex-col gap-2">
+              <div className="my-10 flex  flex-col gap-2">
                 <p className="font-bold">Example:</p>
                 <div className="rounded-lg border bg-background p-5 dark:border-[#333]">
                   <h1 className="max-sm:text-sm">Issue Title: [Brief description of the issue]</h1>
@@ -152,11 +152,11 @@ const IssueGuideTabs = () => {
               </div>
             </div>
           </CardContent>
-          <CardFooter className="italic">
+          {/* <CardFooter className="italic">
             You can use these formatting examples as a reference while creating
             your new issue. Feel free to mix and match different formatting
             options to make your issue clear and easy to understand.
-          </CardFooter>
+          </CardFooter> */}
         </Card>
       </TabsContent>
       <TabsContent value="markdown">
