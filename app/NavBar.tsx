@@ -1,4 +1,4 @@
-'use client'
+"use client";
 
 import classnames from "classnames";
 import Link from "next/link";
@@ -6,6 +6,7 @@ import { usePathname } from "next/navigation";
 import { AiFillBug } from "react-icons/ai";
 import { DarkModeButton } from "./components";
 import { useSession } from "next-auth/react";
+import UserDropDown from "./components/UserDropDown";
 
 const NavBar = () => {
   const { status, data: session } = useSession();
@@ -16,7 +17,7 @@ const NavBar = () => {
   ];
 
   return (
-    <nav className="mb-5 flex h-14 items-center justify-between border-b border-darkBackground1 px-5">
+    <nav className="mb-5 flex h-14 items-center justify-between gap-6 border-b border-darkBackground1 px-5">
       <div className="flex items-center gap-6">
         <Link href="/">
           <AiFillBug className="h-5 w-5" />
@@ -40,12 +41,15 @@ const NavBar = () => {
           ))}
         </ul>
       </div>
-      <div className="flex gap-2 items-center text-md font-semibold leading-tight tracking-tight">
+      <div className="text-md flex items-center gap-2 font-semibold leading-tight tracking-tight">
         {status === "authenticated" && (
-          <Link href={"/api/auth/signout"}><p>Logout</p></Link>
+          // <Link href={"/api/auth/signout"}><p>Logout</p></Link>
+          <UserDropDown session={session} />
         )}
         {status === "unauthenticated" && (
-          <Link href={"/api/auth/signin"}><p>Login</p></Link>
+          <Link href={"/api/auth/signin"}>
+            <p>Login</p>
+          </Link>
         )}
         <DarkModeButton />
       </div>
