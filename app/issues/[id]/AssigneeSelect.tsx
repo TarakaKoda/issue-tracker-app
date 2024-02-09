@@ -11,11 +11,13 @@ import {
   SelectValue,
 } from "@/components/ui/select";
 import { Skeleton } from "@/components/ui/skeleton";
+import { useToast } from "@/components/ui/use-toast";
 import { Issue } from "@prisma/client";
 import { useQuery } from "@tanstack/react-query";
 import axios from "axios";
 import { MdOutlineAssignmentInd } from "react-icons/md";
 const AssigneeSelect = ({ issue }: { issue: Issue }) => {
+  const { toast } = useToast();
   const {
     data: users,
     error,
@@ -37,9 +39,17 @@ const AssigneeSelect = ({ issue }: { issue: Issue }) => {
       defaultValue={issue.assignedToUserId || "unassigned"}
       onValueChange={(userId) => {
         const assignedUserId = userId === "unassigned" ? null : userId;
-        axios.patch(`/api/issues/${issue.id}`, {
-          assignedToUserId: assignedUserId,
-        });
+        axios
+          .patch(`/api/issues/${issue.id}`, {
+            assignedToUserId: assignedUserId,
+          })
+          .catch(() => {
+            toast({
+              title: "Uh oh! Something went wrong.",
+              description: "User could not be assigned to this issue.",
+              variant: "destructive",
+            });
+          });
       }}
     >
       <SelectTrigger className="dark:border-[#333] md:min-w-[10rem]">
