@@ -10,15 +10,15 @@ import UserDropDown from "./components/UserDropDown";
 
 const NavBar = () => {
   return (
-    <div className="flex w-full justify-center">
-      <nav className="mb-5 flex h-14 w-full items-center justify-between gap-6 border-b border-darkBackground1 px-5">
-        <div className="flex w-full items-center gap-6">
+    <div className="sticky top-0 z-10 flex h-14 bg-background justify-center dark:bg-black dark:bg-opacity-10 dark:backdrop-blur-lg dark:backdrop-filter">
+      <nav className="mb-5 flex h-14 w-full items-center justify-between gap-6 bg-blend-difference border-b-[0.1px] dark:border-darkBackground1 px-5">
+        <div className="flex items-center  gap-6">
           <Link href="/">
             <AiFillBug className="h-5 w-5" />
           </Link>
           <NavLinks />
         </div>
-        <div className="text-md flex w-full items-center justify-end gap-3 font-semibold leading-tight tracking-tight">
+        <div className="text-md flex w-full items-center justify-end gap-4 font-semibold leading-tight tracking-tight">
           <AuthStatus />
           <DarkModeButton />
         </div>
@@ -34,7 +34,7 @@ const NavLinks = () => {
     { label: "Issues", href: "/issues" },
   ];
   return (
-    <ul className="m-0 mb-2 flex list-none gap-6">
+    <ul className="m-0 mb-2 mix-blend-difference flex list-none gap-6">
       {links.map((link) => (
         <li
           key={link.label}
@@ -60,7 +60,10 @@ const AuthStatus = () => {
   if (status === "loading") return null;
   if (status === "unauthenticated")
     return (
-      <Link className="dark:text-zinc-400 text-zinc-500" href={"/api/auth/signin"}>
+      <Link
+        className="text-zinc-500 dark:text-zinc-400"
+        href={"/api/auth/signin"}
+      >
         <p>Login</p>
       </Link>
     );

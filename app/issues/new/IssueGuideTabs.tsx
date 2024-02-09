@@ -47,8 +47,8 @@ const IssueGuideTabs = () => {
               Creating Clear and Consistent Issue Descriptions
             </CardDescription>
           </CardHeader>
-          <CardContent className="flex w-full max-w-[20rem] flex-col gap-5">
-            <div className="flex flex-col max-w-[20rem] gap-3 space-y-1">
+          <CardContent className="flex w-full flex-col gap-5">
+            <div className="flex flex-col gap-3 space-y-1">
               <h1 className="max-sm:text-sm">Issue Formatting Guide</h1>
               <Separator className="my-4" />
               <div>
