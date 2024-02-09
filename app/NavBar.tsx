@@ -10,7 +10,7 @@ import UserDropDown from "./components/UserDropDown";
 
 const NavBar = () => {
   return (
-    <div className="sticky top-0 z-10 flex h-14 bg-background justify-center dark:bg-black dark:bg-opacity-10 dark:backdrop-blur-lg dark:backdrop-filter">
+    <div className="sticky top-0 w-screen z-10 flex dark:mix-blend-difference h-14 bg-background justify-center dark:bg-transparent dark:bg-opacity-30 dark:backdrop-blur-lg dark:backdrop-filter">
       <nav className="mb-5 flex h-14 w-full items-center justify-between gap-6 bg-blend-difference border-b-[0.1px] dark:border-darkBackground1 px-5">
         <div className="flex items-center  gap-6">
           <Link href="/">

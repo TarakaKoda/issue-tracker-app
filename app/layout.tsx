@@ -22,7 +22,7 @@ export default function RootLayout({
     <html lang="en">
       <body
         suppressHydrationWarning={true}
-        className={`${inter.className} common-container overflow-scroll`}
+        className={`${inter.className} common-container overflow-y-scroll-scroll overflow-x-hidden`}
       >
         <AuthProvider>
           <ThemeProvider
@@ -32,7 +32,7 @@ export default function RootLayout({
             disableTransitionOnChange
           >
             <NavBar />
-            <main className="w-full p-5 ">{children}</main>
+            <main className="w-full p-5">{children}</main>
             <Toaster />
           </ThemeProvider>
         </AuthProvider>

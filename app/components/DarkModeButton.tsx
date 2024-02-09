@@ -35,7 +35,7 @@ const DarkModeButton = () => {
       </DropdownMenuTrigger>
       <DropdownMenuContent
         align="end"
-        className="bg-background border-darkBackground1"
+        className="bg-background border-darkBackground1 w-full"
       >
         {colorModes.map((colorMode) => (
           <DropdownMenuItem
