@@ -2,16 +2,18 @@
 
 import classnames from "classnames";
 import { useSession } from "next-auth/react";
+import Image from "next/image";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
 import { AiFillBug } from "react-icons/ai";
 import { DarkModeButton } from "./components";
 import UserDropDown from "./components/UserDropDown";
+import commonUser from "@/public/images/user-fallback.jpeg";
 
 const NavBar = () => {
   return (
-    <div className="sticky top-0 w-screen z-10 flex dark:mix-blend-difference h-14 bg-background justify-center dark:bg-transparent dark:bg-opacity-30 dark:backdrop-blur-lg dark:backdrop-filter">
-      <nav className="mb-5 flex h-14 w-full items-center justify-between gap-6 bg-blend-difference border-b-[0.1px] dark:border-darkBackground1 px-5">
+    <div className="sticky top-0 z-10 flex h-14 w-screen justify-center bg-background dark:bg-transparent dark:bg-opacity-30 dark:mix-blend-difference dark:backdrop-blur-lg dark:backdrop-filter">
+      <nav className="mb-5 flex h-14 w-full items-center justify-between gap-6 border-b-[0.1px] px-5 bg-blend-difference dark:border-darkBackground1">
         <div className="flex items-center  gap-6">
           <Link href="/">
             <AiFillBug className="h-5 w-5" />
@@ -34,7 +36,7 @@ const NavLinks = () => {
     { label: "Issues", href: "/issues" },
   ];
   return (
-    <ul className="m-0 mb-2 mix-blend-difference flex list-none gap-6">
+    <ul className="m-0 mb-2 flex list-none gap-6 mix-blend-difference">
       {links.map((link) => (
         <li
           key={link.label}
@@ -57,16 +59,16 @@ const NavLinks = () => {
 
 const AuthStatus = () => {
   const { status, data: session } = useSession();
-  if (status === "loading") return null;
-  if (status === "unauthenticated")
+  if (status === "loading")
     return (
-      <Link
-        className="text-zinc-500 dark:text-zinc-400"
-        href={"/api/auth/signin"}
-      >
-        <p>Login</p>
-      </Link>
+      <Image
+        className="h-8 w-8 cursor-progress rounded-full"
+        src={commonUser}
+        alt="user logo"
+      />
     );
+  if (status === "unauthenticated")
+    return <UserDropDown session={session!} isUnauthenticated={true} />;
   return <UserDropDown session={session!} />;
 };
 

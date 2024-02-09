@@ -1,4 +1,6 @@
-import {prisma} from "@/prisma/client";
+import authOptions from "@/app/auth/authOptions";
+import { prisma } from "@/prisma/client";
+import { getServerSession } from "next-auth";
 import { notFound } from "next/navigation";
 import IssueDeleteContainer from "./IssueDeleteContainer";
 import IssueDetails from "./IssueDetails";
@@ -8,6 +10,8 @@ interface Props {
 }
 
 const IssueDetailPage = async ({ params: { id } }: Props) => {
+  const session = await getServerSession(authOptions);
+
   const issue = await prisma.issue.findUnique({
     where: {
       id: parseInt(id),
@@ -15,11 +19,10 @@ const IssueDetailPage = async ({ params: { id } }: Props) => {
   });
 
   if (!issue) notFound();
-
   return (
     <div className="grid grid-cols-1 max-lg:gap-5 lg:grid-cols-5">
       <IssueDetails issue={issue} />
-      <IssueDeleteContainer issue={issue} />
+      {session && <IssueDeleteContainer issue={issue} />}
     </div>
   );
 };
