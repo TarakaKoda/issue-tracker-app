@@ -3,7 +3,7 @@ import {
   LoadingSpinner,
   SimpleMDEProvider as MarkdownEditor,
 } from "@/app/components";
-import { issueSchema } from "@/app/validationSchemas";
+import { patchIssueSchema } from "@/app/validationSchemas";
 import { Button } from "@/components/ui/button";
 import {
   Form,
@@ -32,7 +32,6 @@ import { useState } from "react";
 import { useForm } from "react-hook-form";
 import { AiOutlineFileDone } from "react-icons/ai";
 import { GrDocumentUpdate } from "react-icons/gr";
-import { PiBugBeetleFill } from "react-icons/pi";
 import { z } from "zod";
 
 interface Props {
@@ -44,8 +43,8 @@ const IssueForm = ({ issue, updatingIssue = false }: Props) => {
   const [isSubmitting, setIsSubmitting] = useState(false);
   const { toast } = useToast();
   const router = useRouter();
-  const form = useForm<z.infer<typeof issueSchema>>({
-    resolver: zodResolver(issueSchema),
+  const form = useForm<z.infer<typeof patchIssueSchema>>({
+    resolver: zodResolver(patchIssueSchema),
     defaultValues: {
       title: issue?.title || "",
       description: issue?.description || "",
@@ -53,7 +52,7 @@ const IssueForm = ({ issue, updatingIssue = false }: Props) => {
     },
   });
 
-  async function onSubmit(values: z.infer<typeof issueSchema>) {
+  async function onSubmit(values: z.infer<typeof patchIssueSchema>) {
     if (!updatingIssue) {
       try {
         setIsSubmitting(true);
