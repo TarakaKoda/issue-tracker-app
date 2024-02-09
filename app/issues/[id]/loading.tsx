@@ -14,6 +14,7 @@ const LoadingIssueDetailPage = async () => {
       </div>
       <div className="flex gap-3 max-sm:flex-col lg:max-w-36 lg:flex-col lg:justify-self-end">
         <Skeleton className="h-10 w-full bg-[#f3f3f5] dark:bg-[#333] sm:w-44 lg:w-36" />
+        <Skeleton className="h-10 w-full bg-[#f3f3f5] dark:bg-[#333] sm:w-44 lg:w-36" />
         <Skeleton className=" h-10 w-full bg-[#f3f3f5] dark:bg-[#333] sm:w-44 lg:w-36" />
       </div>
     </div>
