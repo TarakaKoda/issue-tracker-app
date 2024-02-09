@@ -5,6 +5,7 @@ import NavBar from "./NavBar";
 import { ThemeProvider } from "./components";
 import "./globals.css";
 import AuthProvider from "./auth/Provider";
+import QueryClientProvider from "./QueryClientProvider";
 
 const inter = Inter({ subsets: ["latin"] });
 
@@ -24,18 +25,20 @@ export default function RootLayout({
         suppressHydrationWarning={true}
         className={`${inter.className} common-container overflow-y-scroll-scroll overflow-x-hidden`}
       >
-        <AuthProvider>
-          <ThemeProvider
-            attribute="class"
-            defaultTheme="system"
-            enableSystem
-            disableTransitionOnChange
-          >
-            <NavBar />
-            <main className="w-full p-5">{children}</main>
-            <Toaster />
-          </ThemeProvider>
-        </AuthProvider>
+        <QueryClientProvider>
+          <AuthProvider>
+            <ThemeProvider
+              attribute="class"
+              defaultTheme="system"
+              enableSystem
+              disableTransitionOnChange
+            >
+              <NavBar />
+              <main className="w-full p-5">{children}</main>
+              <Toaster />
+            </ThemeProvider>
+          </AuthProvider>
+        </QueryClientProvider>
       </body>
     </html>
   );
