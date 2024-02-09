@@ -2,6 +2,7 @@ import { Button } from "@/components/ui/button";
 import { MdOutlinePostAdd } from "react-icons/md";
 import Link from "next/link";
 import IssueStatusFilter from "./IssueStatusFilter";
+import { Status } from "@prisma/client";
 
 const IssueAction = () => {
   return (
