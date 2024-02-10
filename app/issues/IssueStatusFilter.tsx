@@ -55,7 +55,7 @@ const IssueStatusFilter = () => {
       case "CLOSED":
         return "text-green-600 !border-green-500 bg-green-600/15 ";
       default:
-        return "!border-[#222]";
+        return "dark:!border-[#222]";
     }
   };
   const router = useRouter();

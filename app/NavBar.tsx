@@ -36,7 +36,7 @@ const NavLinks = () => {
     { label: "Issues", href: "/issues" },
   ];
   return (
-    <ul className="m-0 mb-2 flex list-none gap-6 mix-blend-difference">
+    <ul className="m-0 mb-2 flex list-none gap-6 ">
       {links.map((link) => (
         <li
           key={link.label}

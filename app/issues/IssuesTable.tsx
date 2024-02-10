@@ -21,9 +21,13 @@ const IssuesTable = ({ issues }: Props) => {
     <Table>
       <TableHeader>
         <TableRow className="uppercase">
-          <TableHead className="w-auto">Issue</TableHead>
-          <TableHead className="hidden md:table-cell">Status</TableHead>
-          <TableHead className="hidden md:table-cell">Created</TableHead>
+          <TableHead className="w-auto min-w-52">Issue</TableHead>
+          <TableHead className="hidden min-w-52 md:table-cell">
+            Status
+          </TableHead>
+          <TableHead className="hidden min-w-52 md:table-cell">
+            Created
+          </TableHead>
         </TableRow>
       </TableHeader>
       <TableBody>
@@ -45,16 +49,16 @@ const IssuesTable = ({ issues }: Props) => {
               <IssueStatusBadge status={issue.status} />
             </TableCell>
             <TableCell className="hidden md:table-cell">
-              <p className="flex max-w-48 items-center justify-evenly rounded-md border border-[#d3d3d5] py-2 text-center leading-7 transition-colors hover:border-foreground hover:bg-foreground hover:text-background dark:border-[#333] dark:hover:text-black [&:not(:first-child)]:mt-6">
-                <IssueToolTip
-                  toolTipContent={`Updated ${multiFormatDateString(
-                    issue.updatedAt.toISOString(),
-                  )}`}
-                >
+              <IssueToolTip
+                toolTipContent={`Updated ${multiFormatDateString(
+                  issue.updatedAt.toISOString(),
+                )}`}
+              >
+                <p className="flex max-w-48 cursor-help items-center justify-evenly rounded-md border border-[#d3d3d5] py-2 text-center leading-7 transition-colors hover:border-foreground hover:bg-foreground hover:text-background dark:border-[#333] dark:hover:text-black [&:not(:first-child)]:mt-6">
                   <SlCalender />
-                </IssueToolTip>
-                {formatDateString(issue.createdAt.toISOString())}
-              </p>
+                  {formatDateString(issue.createdAt.toISOString())}
+                </p>
+              </IssueToolTip>
             </TableCell>
           </TableRow>
         ))}
