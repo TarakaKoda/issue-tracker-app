@@ -1,13 +1,11 @@
 import { Skeleton } from "@/components/ui/skeleton";
 import {
+  Table,
   TableBody,
-  TableCaption,
   TableCell,
-  TableFooter,
   TableHead,
   TableHeader,
-  TableRow,
-  Table,
+  TableRow
 } from "@/components/ui/table";
 import IssueAction from "./IssueAction";
 
