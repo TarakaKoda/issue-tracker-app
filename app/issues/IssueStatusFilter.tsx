@@ -10,7 +10,7 @@ import {
   SelectValue,
 } from "@/components/ui/select";
 import { Status } from "@prisma/client";
-import { useRouter } from "next/navigation";
+import { useRouter, useSearchParams } from "next/navigation";
 import { ReactElement, useState } from "react";
 import { HiOutlineQuestionMarkCircle } from "react-icons/hi";
 import { IoMdStopwatch } from "react-icons/io";
@@ -59,11 +59,23 @@ const IssueStatusFilter = () => {
     }
   };
   const router = useRouter();
+  const searchParams = useSearchParams();
   return (
     <Select
       defaultValue="all"
       onValueChange={(selectStatus) => {
-        const query = selectStatus === "all" ? "" : `?status=${selectStatus}`;
+        const params = new URLSearchParams();
+        if (selectStatus) {
+          selectStatus = selectStatus === "all" ? "" : selectStatus;
+          console.log(selectStatus);
+          params.append("status", selectStatus);
+        }
+        if (searchParams.get("orderBy"))
+          params.append("orderBy", searchParams.get("orderBy")!);
+
+        if (searchParams.get("direction"))
+          params.append("direction", searchParams.get("direction")!);
+        const query = params.size ? "?" + params.toString() : "";
         setStatus(selectStatus);
         router.push(`/issues/${query}`);
       }}

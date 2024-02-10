@@ -48,12 +48,12 @@ const IssuesSortOrderBy = ({
   const router = useRouter();
   return (
     <Select
-      defaultValue={searchParams.direction || 'asc'}
-      onValueChange={(order) =>
+      defaultValue={searchParams.direction || "asc"}
+      onValueChange={(order) => {
         router.push(
           `/issues?${searchParams.status ? `status=${searchParams.status}&` : ""}orderBy=${searchParams.orderBy}&direction=${order}`,
-        )
-      }
+        );
+      }}
     >
       <SelectTrigger className="w-min border-0 bg-transparent">
         <SelectValue placeholder="Order by" />
