@@ -36,7 +36,7 @@ const IssueGuideTabs = () => {
           Issue Formatting Guide
         </TabsTrigger>
         <TabsTrigger value="markdown" className="uppercase max-sm:text-[0.5rem] dark:text-white">
-          Markdown GuideF
+          Markdown Guide
         </TabsTrigger>
       </TabsList>
       <TabsContent value="issue">

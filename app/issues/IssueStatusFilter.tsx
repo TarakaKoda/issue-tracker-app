@@ -67,7 +67,6 @@ const IssueStatusFilter = () => {
         const params = new URLSearchParams();
         if (selectStatus) {
           selectStatus = selectStatus === "all" ? "" : selectStatus;
-          console.log(selectStatus);
           params.append("status", selectStatus);
         }
         if (searchParams.get("orderBy"))
