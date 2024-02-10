@@ -7,27 +7,51 @@ import {
   TableRow,
 } from "@/components/ui/table";
 import { formatDateString, multiFormatDateString } from "@/lib/utils";
-import { Issue } from "@prisma/client";
+import { Issue, Status } from "@prisma/client";
 import Link from "next/link";
 import { SlCalender } from "react-icons/sl";
 import { IssueStatusBadge, IssueToolTip } from "../components";
+import { HiSortAscending } from "react-icons/hi";
 
 interface Props {
   issues: Issue[];
+  searchParams: { status: Status; orderBy: keyof Issue };
 }
 
-const IssuesTable = ({ issues }: Props) => {
+const columns: { label: string; value: keyof Issue; className: string }[] = [
+  { label: "Issue", value: "title", className: "w-auto min-w-52" },
+  {
+    label: "Status",
+    value: "status",
+    className: "hidden min-w-52 md:table-cell",
+  },
+  {
+    label: "Created",
+    value: "createdAt",
+    className: "hidden min-w-52 md:table-cell",
+  },
+];
+
+const IssuesTable = ({ issues, searchParams }: Props) => {
   return (
     <Table>
       <TableHeader>
         <TableRow className="uppercase">
-          <TableHead className="w-auto min-w-52">Issue</TableHead>
-          <TableHead className="hidden min-w-52 md:table-cell">
-            Status
-          </TableHead>
-          <TableHead className="hidden min-w-52 md:table-cell">
-            Created
-          </TableHead>
+          {columns.map((column) => (
+            <TableHead key={column.value} className={column.className}>
+              <Link
+                href={{
+                  query: { ...searchParams, orderBy: column.value },
+                }}
+                className="flex items-center gap-4"
+              >
+                {column.label}
+                {column.value === searchParams.orderBy && (
+                  <HiSortAscending className="text-lg" />
+                )}
+              </Link>
+            </TableHead>
+          ))}
         </TableRow>
       </TableHeader>
       <TableBody>

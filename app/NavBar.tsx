@@ -12,9 +12,9 @@ import commonUser from "@/public/images/user-fallback.jpeg";
 
 const NavBar = () => {
   return (
-    <div className="sticky top-0 z-10 flex h-14 w-screen justify-center bg-background dark:bg-transparent dark:bg-opacity-30 dark:mix-blend-difference dark:backdrop-blur-lg dark:backdrop-filter">
-      <nav className="mb-5 flex h-14 w-full items-center justify-between gap-6 border-b-[0.1px] px-5 bg-blend-difference dark:border-darkBackground1">
-        <div className="flex items-center  gap-6">
+    <div className="sticky top-0 z-10 flex h-14 w-screen justify-center bg-background dark:bg-transparent dark:bg-opacity-30 dark:backdrop-blur-lg dark:backdrop-filter">
+      <nav className="mb-5 flex h-14 w-full items-center justify-between gap-6 border-b-[0.1px] px-5 dark:border-darkBackground1">
+        <div className="flex items-center gap-6">
           <Link href="/">
             <AiFillBug className="h-5 w-5" />
           </Link>
