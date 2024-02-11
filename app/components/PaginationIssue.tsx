@@ -1,4 +1,4 @@
-'use client'
+"use client";
 
 import {
   Pagination,
@@ -21,7 +21,7 @@ interface Props {
 const PaginationIssue = ({ itemCount, pageSize, currentPage }: Props) => {
   const [startPage, setStartPage] = useState(1);
   const pageCount = Math.ceil(itemCount / pageSize);
-  const visiblePages = 3; // Number of pages to display
+  const visiblePages = 5; // Number of pages to display
   const endPage = Math.min(startPage + visiblePages - 1, pageCount);
 
   const searchParams = useSearchParams();
@@ -33,8 +33,7 @@ const PaginationIssue = ({ itemCount, pageSize, currentPage }: Props) => {
   };
 
   const handleEllipsisClick = () => {
-    // Show the next set of pages when ellipsis is clicked
-    setStartPage(startPage + visiblePages);
+    setStartPage(currentPage + visiblePages);
   };
 
   const renderPaginationItems = () => {
@@ -42,45 +41,113 @@ const PaginationIssue = ({ itemCount, pageSize, currentPage }: Props) => {
 
     // Render previous button
     items.push(
-      <PaginationItem key="prev" className="list-none">
+      <PaginationItem
+        key="prev"
+        className="list-none transition duration-300 ease-in-out"
+      >
         <PaginationPrevious
           aria-disabled={currentPage === 1}
-          href={currentPage === 1 ? '' : { query: changePage(currentPage - 1) }}
+          href={currentPage === 1 ? "" : { query: changePage(currentPage - 1) }}
         />
-      </PaginationItem>
+      </PaginationItem>,
     );
 
-    // Render page numbers or ellipsis
-    for (let i = startPage; i <= endPage; i++) {
+    items.push(
+      <PaginationItem
+        key="first"
+        className="list-none transition duration-300 ease-in-out"
+      >
+        <PaginationLink
+          className={`${currentPage === 1 && "bg-foreground text-background hover:bg-[#222] dark:text-black dark:hover:bg-[#f4f4f2]"}`}
+          href={{ query: changePage(1) }}
+        >
+          {1}
+        </PaginationLink>
+      </PaginationItem>,
+    );
+
+    // Render ellipsis if there are less pages after the visible range
+    if (currentPage > 4) {
       items.push(
-        <PaginationItem key={i} className="list-none">
+        <PaginationItem
+          key="leftellipsis"
+          className="list-none transition duration-300 ease-in-out"
+          onClick={handleEllipsisClick}
+        >
+          <PaginationEllipsis />
+        </PaginationItem>,
+      );
+    }
+
+    // Calculate the start and end of the visible page range, ensuring the current page is always visible
+    let start = Math.max(2, currentPage - Math.floor(visiblePages / 2));
+    let end = Math.min(start + visiblePages - 1, pageCount);
+
+    // Adjust the start and end if necessary to ensure that visiblePages number of pages are displayed
+    if (end - start + 1 < visiblePages) {
+      end = Math.min(pageCount, start + visiblePages - 1);
+      start = Math.max(1, end - visiblePages + 1);
+    }
+
+    // Render page numbers or ellipsis
+    for (let i = start; i < end; i++) {
+      items.push(
+        <PaginationItem
+          key={i}
+          className="list-none transition duration-300 ease-in-out"
+        >
           <PaginationLink
             className={`${currentPage === i && "bg-foreground text-background hover:bg-[#222] dark:text-black dark:hover:bg-[#f4f4f2]"}`}
             href={{ query: changePage(i) }}
           >
             {i}
           </PaginationLink>
-        </PaginationItem>
+        </PaginationItem>,
       );
     }
 
-    // Render ellipsis if there are more pages
-    if (endPage < pageCount) {
+    // Render ellipsis if there are more pages after the visible range
+    if (end < pageCount) {
       items.push(
-        <PaginationItem key="ellipsis" className="list-none" onClick={handleEllipsisClick}>
+        <PaginationItem
+          key="ellipsis"
+          className="list-none transition duration-300 ease-in-out"
+          onClick={handleEllipsisClick}
+        >
           <PaginationEllipsis />
-        </PaginationItem>
+        </PaginationItem>,
       );
     }
+
+    items.push(
+      <PaginationItem
+        key="first"
+        className="list-none transition duration-300 ease-in-out"
+      >
+        <PaginationLink
+          className={`${currentPage === 10 && "bg-foreground text-background hover:bg-[#222] dark:text-black dark:hover:bg-[#f4f4f2]"}`}
+          href={{ query: changePage(10) }}
+        >
+          {10}
+        </PaginationLink>
+      </PaginationItem>,
+    );
 
     // Render next button
     items.push(
-      <PaginationItem key="next" className="list-none">
+      <PaginationItem
+        key="next"
+        className="list-none transition duration-300 ease-in-out"
+      >
         <PaginationNext
           aria-disabled={currentPage === pageCount}
-          href={currentPage === pageCount ? '' : { query: changePage(currentPage + 1) }}
+          href={
+            currentPage === pageCount
+              ? ""
+              : { query: changePage(currentPage + 1) }
+          }
         />
-      </PaginationItem>
+      </PaginationItem>,
     );
 
     return items;
