@@ -27,7 +27,7 @@ const IssueDetails = ({ issue }: Props) => {
           </p>
         </div>
       </div>
-      <IssueDescriptionCard cardContent={issue.description} />
+      <IssueDescriptionCard cardContent={issue.description} issueStatus={issue.status} />
     </div>
   );
 };

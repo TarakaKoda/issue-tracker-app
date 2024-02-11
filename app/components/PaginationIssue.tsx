@@ -21,7 +21,7 @@ interface Props {
 const PaginationIssue = ({ itemCount, pageSize, currentPage }: Props) => {
   const [startPage, setStartPage] = useState(1);
   const pageCount = Math.ceil(itemCount / pageSize);
-  const visiblePages = 5; // Number of pages to display
+  const visiblePages = 3; // Number of pages to display
   const endPage = Math.min(startPage + visiblePages - 1, pageCount);
 
   const searchParams = useSearchParams();
@@ -58,10 +58,10 @@ const PaginationIssue = ({ itemCount, pageSize, currentPage }: Props) => {
         className="list-none transition duration-300 ease-in-out"
       >
         <PaginationLink
-          className={`${currentPage === 1 && "bg-foreground text-background hover:bg-[#222] dark:text-black dark:hover:bg-[#f4f4f2]"}`}
-          href={{ query: changePage(1) }}
+          className={`${currentPage === startPage && "bg-foreground text-background hover:bg-[#222] dark:text-black dark:hover:bg-[#f4f4f2]"}`}
+          href={{ query: changePage(startPage) }}
         >
-          {1}
+          {startPage}
         </PaginationLink>
       </PaginationItem>,
     );
@@ -90,7 +90,7 @@ const PaginationIssue = ({ itemCount, pageSize, currentPage }: Props) => {
     }
 
     // Render page numbers or ellipsis
-    for (let i = start; i < end; i++) {
+    for (let i = start + 1; i < end; i++) {
       items.push(
         <PaginationItem
           key={i}
@@ -121,14 +121,14 @@ const PaginationIssue = ({ itemCount, pageSize, currentPage }: Props) => {
 
     items.push(
       <PaginationItem
-        key="first"
+        key="last"
         className="list-none transition duration-300 ease-in-out"
       >
         <PaginationLink
-          className={`${currentPage === 10 && "bg-foreground text-background hover:bg-[#222] dark:text-black dark:hover:bg-[#f4f4f2]"}`}
-          href={{ query: changePage(10) }}
+          className={`${currentPage === endPage && "bg-foreground text-background hover:bg-[#222] dark:text-black dark:hover:bg-[#f4f4f2]"}`}
+          href={{ query: changePage(endPage) }}
         >
-          {10}
+          {endPage}
         </PaginationLink>
       </PaginationItem>,
     );
@@ -154,13 +154,11 @@ const PaginationIssue = ({ itemCount, pageSize, currentPage }: Props) => {
   };
 
   return (
-    <div className="flex flex-col items-center justify-center">
-      <Pagination>
-        <PaginationContent className="">
-          {renderPaginationItems()}
-        </PaginationContent>
-      </Pagination>
-    </div>
+    <Pagination className="flex items-center justify-center">
+      <PaginationContent className="flex items-center justify-center">
+        {renderPaginationItems()}
+      </PaginationContent>
+    </Pagination>
   );
 };
 
