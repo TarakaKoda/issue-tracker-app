@@ -13,17 +13,18 @@ import { SlCalender } from "react-icons/sl";
 import { IssueStatusBadge, IssueToolTip } from "../components";
 import IssuesSortOrderBy from "./IssuesSortOrderBy";
 
-interface Props {
-  issues: Issue[];
-  searchParams: {
-    status: Status;
-    orderBy: keyof Issue;
-    direction: "asc" | "desc";
-  };
-  columns: { label: string; value: keyof Issue; className: string }[];
+export interface IssueQuery {
+  status: Status;
+  orderBy: keyof Issue;
+  direction: "asc" | "desc";
 }
 
-const IssuesTable = ({ issues, searchParams, columns }: Props) => {
+interface Props {
+  issues: Issue[];
+  searchParams: IssueQuery;
+}
+
+const IssuesTable = ({ issues, searchParams }: Props) => {
   return (
     <Table>
       <TableHeader>
@@ -81,5 +82,25 @@ const IssuesTable = ({ issues, searchParams, columns }: Props) => {
     </Table>
   );
 };
+
+const columns: {
+  label: string;
+  value: keyof Issue;
+  className: string;
+}[] = [
+  { label: "Issue", value: "title", className: "w-auto min-w-52" },
+  {
+    label: "Status",
+    value: "status",
+    className: "hidden min-w-52 md:table-cell",
+  },
+  {
+    label: "Created",
+    value: "createdAt",
+    className: "hidden min-w-52 md:table-cell",
+  },
+];
+
+export const columnNames = columns.map((column) => column.value);
 
 export default IssuesTable;

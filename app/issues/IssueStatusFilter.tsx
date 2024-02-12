@@ -44,12 +44,11 @@ const statuses: {
   },
 ];
 
-const IssueStatusFilter = () => {
-  const [status, setStatus] = useState("");
-  const getColorClass = (status: string) => {
+const IssueStatusFilter = ({  selectedStatus }: { selectedStatus?: Status }) => {
+  const getColorClass = (status?: string) => {
     switch (status) {
       case "OPEN":
-        return "text-red-600 !border-red-500 bg-red-600/15 ";
+        return "text-red-600 !border-red-500 bg-red-600/15";
       case "IN_PROGRESS":
         return "text-violet-600 !border-violet-500 bg-violet-600/15 ";
       case "CLOSED":
@@ -62,7 +61,7 @@ const IssueStatusFilter = () => {
   const searchParams = useSearchParams();
   return (
     <Select
-      defaultValue="all"
+      defaultValue={selectedStatus || "all"}
       onValueChange={(selectStatus) => {
         const params = new URLSearchParams();
         if (selectStatus) {
@@ -75,12 +74,11 @@ const IssueStatusFilter = () => {
         if (searchParams.get("direction"))
           params.append("direction", searchParams.get("direction")!);
         const query = params.size ? "?" + params.toString() : "";
-        setStatus(selectStatus);
         router.push(`/issues/${query}`);
       }}
     >
       <SelectTrigger
-        className={`max-w-40 border md:min-w-[10rem] ${getColorClass(status)}`}
+        className={`max-w-40 border md:min-w-[10rem] ${getColorClass(selectedStatus)}`}
       >
         <SelectValue placeholder="Filter by status" />
       </SelectTrigger>

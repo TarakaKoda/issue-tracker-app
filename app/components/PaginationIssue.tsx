@@ -80,7 +80,7 @@ const PaginationIssue = ({ itemCount, pageSize, currentPage }: Props) => {
     }
 
     // Calculate the start and end of the visible page range, ensuring the current page is always visible
-    let start = Math.max(2, currentPage - Math.floor(visiblePages / 2));
+    let start = Math.max(1, currentPage - Math.floor(visiblePages / 2));
     let end = Math.min(start + visiblePages - 1, pageCount);
 
     // Adjust the start and end if necessary to ensure that visiblePages number of pages are displayed
@@ -90,7 +90,7 @@ const PaginationIssue = ({ itemCount, pageSize, currentPage }: Props) => {
     }
 
     // Render page numbers or ellipsis
-    for (let i = start + 1; i < end; i++) {
+    for (let i = start +1; i < end; i++) {
       items.push(
         <PaginationItem
           key={i}
@@ -119,7 +119,7 @@ const PaginationIssue = ({ itemCount, pageSize, currentPage }: Props) => {
       );
     }
 
-    items.push(
+   {endPage !== 1 && items.push(
       <PaginationItem
         key="last"
         className="list-none transition duration-300 ease-in-out"
@@ -131,7 +131,7 @@ const PaginationIssue = ({ itemCount, pageSize, currentPage }: Props) => {
           {endPage}
         </PaginationLink>
       </PaginationItem>,
-    );
+    );}
 
     // Render next button
     items.push(

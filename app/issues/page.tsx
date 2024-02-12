@@ -1,23 +1,9 @@
 import { prisma } from "@/prisma/client";
+import { Issue, Status } from "@prisma/client";
+import PaginationIssue from "../components/PaginationIssue";
 import IssueAction from "./IssueAction";
 import IssuesTable from "./IssuesTable";
-import { Issue, Status } from "@prisma/client";
-import { pages } from "next/dist/build/templates/app-page";
-import PaginationIssue from "../components/PaginationIssue";
-
-const columns: { label: string; value: keyof Issue; className: string }[] = [
-  { label: "Issue", value: "title", className: "w-auto min-w-52" },
-  {
-    label: "Status",
-    value: "status",
-    className: "hidden min-w-52 md:table-cell",
-  },
-  {
-    label: "Created",
-    value: "createdAt",
-    className: "hidden min-w-52 md:table-cell",
-  },
-];
+import { columnNames } from "./IssuesTable";
 
 const IssuesPage = async ({
   searchParams,
@@ -38,9 +24,7 @@ const IssuesPage = async ({
 
   const direction = searchParams.direction === "desc" ? "desc" : "asc";
 
-  const orderBy = columns
-    .map((column) => column.value)
-    .includes(searchParams.orderBy)
+  const orderBy = columnNames.includes(searchParams.orderBy)
     ? { [searchParams.orderBy]: direction }
     : undefined;
 
@@ -57,13 +41,12 @@ const IssuesPage = async ({
   const issueCount = await prisma.issue.count({ where });
 
   return (
-    <div className="w-full flex flex-col items-start justify-center">
-      <div className="w-full min-h-[74vh]">
-        <IssueAction />
+    <div className="flex w-full flex-col items-start justify-center">
+      <div className="min-h-[74vh] w-full">
+        <IssueAction status={status!} />
         <IssuesTable
           issues={issues}
           searchParams={searchParams}
-          columns={columns}
         />
       </div>
       <PaginationIssue

@@ -9,11 +9,11 @@ const NewIssuePage = () => {
       <div className="flex w-full flex-col gap-4">
         <div className="flex items-center gap-3">
           <IoCreateOutline className="text-3xl" />
-          <h2 className="">Create New Issue</h2>
+          <h2>Create New Issue</h2>
         </div>
         <IssueForm />
       </div>
-      <div className="flex w-full flex-col gap-4">
+      <div className="flex w-full place-self-start flex-col gap-4">
         <div className="flex items-center gap-3">
           <BiSolidBookReader className="text-3xl" />
           <h2>Issue Guide</h2>

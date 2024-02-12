@@ -5,15 +5,20 @@ import {
   TableCell,
   TableHead,
   TableHeader,
-  TableRow
+  TableRow,
 } from "@/components/ui/table";
 import IssueAction from "./IssueAction";
+import { Status } from "@prisma/client";
 
-const LoadingIssuesPage = () => {
+interface Props {
+  searchParams: { status: Status };
+}
+
+const LoadingIssuesPage = ({ searchParams }: Props) => {
   const issues = [1, 2, 3, 5, 6, 7, 9, 10];
   return (
-    <div className="flex flex-col w-full">
-      <IssueAction />
+    <div className="flex w-full flex-col">
+      <IssueAction/>
       <Table>
         <TableHeader>
           <TableRow className="uppercase">
@@ -26,16 +31,16 @@ const LoadingIssuesPage = () => {
           {issues.map((issue) => (
             <TableRow key={issue}>
               <TableCell className="font-medium max-md:flex max-md:flex-col max-md:gap-2">
-                <Skeleton className="h-10 w-full dark:bg-[#111] max-md:h-5 bg-[#f3f3f5]" />
+                <Skeleton className="h-10 w-full bg-[#f3f3f5] dark:bg-[#111] max-md:h-5" />
                 <div className="block md:hidden">
-                  <Skeleton className="h-6 max-w-[7rem] dark:bg-[#111] bg-[#f3f3f5]" />
+                  <Skeleton className="h-6 max-w-[7rem] bg-[#f3f3f5] dark:bg-[#111]" />
                 </div>
               </TableCell>
               <TableCell className="hidden md:table-cell">
-                <Skeleton className="h-10 max-min-28 max-w-28 dark:bg-[#111] bg-[#f3f3f5]" />
+                <Skeleton className="max-min-28 h-10 max-w-28 bg-[#f3f3f5] dark:bg-[#111]" />
               </TableCell>
               <TableCell className="hidden md:table-cell">
-                <Skeleton className="h-10 w-full dark:bg-[#111] bg-[#f3f3f5]" />
+                <Skeleton className="h-10 w-full bg-[#f3f3f5] dark:bg-[#111]" />
               </TableCell>
             </TableRow>
           ))}
