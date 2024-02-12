@@ -1,3 +1,4 @@
+import { Grid } from "lucide-react";
 import IssueChart from "./IssueChart";
 import IssueSummary from "./IssueSummary";
 import LatestIssues from "./LatestIssues";
@@ -14,5 +15,13 @@ export default async function Home() {
     where: { status: "IN_PROGRESS" },
   });
 
-  return <IssueChart open={open} closed={closed} inProgress={inProgress} />;
+  return (
+    <div className=" grid grid-cols-1 md:grid-cols-2 gap-5">
+      <div className="flex flex-col gap-5">
+        <IssueSummary open={open} inProgress={inProgress} closed={closed} />
+        <IssueChart open={open} inProgress={inProgress} closed={closed} />
+      </div>
+      <LatestIssues />
+    </div>
+  );
 }

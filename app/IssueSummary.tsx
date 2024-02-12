@@ -29,15 +29,15 @@ const IssueSummary = ({ open, inProgress, closed }: Props) => {
   };
 
   return (
-    <div className="flex gap-5">
+    <div className="flex gap-5 max-sm:justify-evenly">
       {containers.map((container) => (
         <Card
           key={container.label}
-          className={`h-28 p-5 ${getColorClass(container.status)}`}
+          className={`h-28 max-sm:h-20 max-sm:p-2 p-5 ${getColorClass(container.status)}`}
         >
           <div className=" flex flex-col">
             <Link
-              className="text-sm font-medium"
+              className="text-sm max-sm:text-xs font-medium"
               href={`/issues?status=${container.status}`}
             >
               {container.label}
