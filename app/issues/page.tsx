@@ -4,6 +4,7 @@ import PaginationIssue from "../components/PaginationIssue";
 import IssueAction from "./IssueAction";
 import IssuesTable from "./IssuesTable";
 import { columnNames } from "./IssuesTable";
+import { Metadata } from "next";
 
 const IssuesPage = async ({
   searchParams,
@@ -44,10 +45,7 @@ const IssuesPage = async ({
     <div className="flex w-full flex-col items-start justify-center">
       <div className="min-h-[74vh] w-full">
         <IssueAction status={status!} />
-        <IssuesTable
-          issues={issues}
-          searchParams={searchParams}
-        />
+        <IssuesTable issues={issues} searchParams={searchParams} />
       </div>
       <PaginationIssue
         pageSize={pageSize}
@@ -60,4 +58,8 @@ const IssuesPage = async ({
 
 export const dynamic = "force-dynamic";
 
+export const metadata: Metadata = {
+  title: "Issue Tracker - Issue List",
+  description: "View all project issues",
+};
 export default IssuesPage;

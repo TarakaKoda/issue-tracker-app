@@ -2,6 +2,7 @@ import { IssueForm } from "../_components";
 import IssueGuideTabs from "./IssueGuideTabs";
 import { IoCreateOutline } from "react-icons/io5";
 import { BiSolidBookReader } from "react-icons/bi";
+import { Metadata } from "next";
 
 const NewIssuePage = () => {
   return (
@@ -13,7 +14,7 @@ const NewIssuePage = () => {
         </div>
         <IssueForm />
       </div>
-      <div className="flex w-full place-self-start flex-col gap-4">
+      <div className="flex w-full flex-col gap-4 place-self-start">
         <div className="flex items-center gap-3">
           <BiSolidBookReader className="text-3xl" />
           <h2>Issue Guide</h2>
@@ -24,6 +25,11 @@ const NewIssuePage = () => {
       </div>
     </div>
   );
+};
+
+export const metadata: Metadata = {
+  title: "Issue Tracker - New Issue",
+  description: "Creating new issue",
 };
 
 export default NewIssuePage;
