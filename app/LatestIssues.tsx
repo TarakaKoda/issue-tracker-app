@@ -26,7 +26,7 @@ const LatestIssues = async () => {
         <CardTitle>Latest Issues</CardTitle>
       </CardHeader>
       <CardContent>
-        <Table>
+        <Table className="dark:bg-[#111]">
           <TableBody>
             {issues.map((issue) => (
               <TableRow key={issue.id}>
