@@ -1,5 +1,5 @@
 import { Issue } from "@prisma/client";
-import IssueDeleteAlertDialogue from "./IssueDeleteAlertDialogue";
+import IssueDeleteAlertDialogue from "./AlertDialogue";
 import IssueEditButton from "./IssueEditButton";
 import AssigneeSelect from "./AssigneeSelect";
 
