@@ -1,7 +1,7 @@
 <div align="center">
   <br />
     <a href="https://issue-tracker-app-five.vercel.app" target="_blank">
-      <img src="https://github.com/adrianhajdin/social_media_app/assets/151519281/be514a19-3cbb-48b7-9acd-2cf4d2e319c4" alt="Project Banner">
+            <img src="https://github.com/TarakaKoda/issue-tracker-app/assets/122253973/afd02158-8af8-4f35-90c7-cbffb38a6445" alt="Project Banner">
     </a>
   <br />
 
