@@ -18,11 +18,11 @@ const IssueSummary = ({ open, inProgress, closed }: Props) => {
   const getColorClass = (status: Status) => {
     switch (status) {
       case "OPEN":
-        return "text-red-600 hover:text-white border border-red-500 bg-red-600/15 dark:hover:bg-red-800 hover:bg-red-600";
+        return "dark:text-red-600 dark:hover:text-white text-white border dark:border-red-500 dark:bg-red-600/15 dark:hover:bg-red-800 bg-red-600";
       case "IN_PROGRESS":
-        return "text-violet-600 hover:text-white border-violet-500 bg-violet-600/15 dark:hover:bg-violet-800 hover:bg-violet-600";
+        return "dark:text-violet-600 dark:hover:text-white text-white dark:border-violet-500 dark:bg-violet-600/15 dark:hover:bg-violet-800 bg-violet-600";
       case "CLOSED":
-        return "text-green-600 hover:text-white border-green-500 bg-green-600/15 dark:hover:bg-green-800 hover:bg-green-500";
+        return "dark:text-green-600 dark:hover:text-white text-white dark:border-green-500 dark:bg-green-600/15 dark:hover:bg-green-800 bg-green-500";
       default:
         return "";
     }
@@ -31,20 +31,20 @@ const IssueSummary = ({ open, inProgress, closed }: Props) => {
   return (
     <div className="flex gap-5 max-sm:justify-evenly">
       {containers.map((container) => (
-        <Card
+        <Link
           key={container.label}
-          className={`h-28 max-sm:h-20 max-sm:p-2 p-5 ${getColorClass(container.status)}`}
+          className="text-sm font-medium max-sm:text-xs"
+          href={`/issues?status=${container.status}`}
         >
-          <div className="flex flex-col">
-            <Link
-              className="text-sm max-sm:text-xs font-medium"
-              href={`/issues?status=${container.status}`}
-            >
-              {container.label}
-            </Link>
-            <p className="text-4xl font-bold">{container.value}</p>
-          </div>
-        </Card>
+          <Card
+            className={`h-28 p-5 max-sm:h-20 max-sm:p-2 max-sm:text-center ${getColorClass(container.status)}`}
+          >
+            {container.label}
+            <div className="flex flex-col">
+              <p className="text-4xl font-bold">{container.value}</p>
+            </div>
+          </Card>
+        </Link>
       ))}
     </div>
   );

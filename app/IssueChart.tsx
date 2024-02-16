@@ -31,7 +31,7 @@ const IssueChart = ({ open, inProgress, closed }: Props) => {
 
   return (
     <Card className="h-auto w-full dark:border-[#333] dark:bg-[#111]">
-      <CardContent className="w-full mt-8">
+      <CardContent className="w-full mt-4">
         <ResponsiveContainer width="100%" height={470}>
           <BarChart data={data}>
             <XAxis dataKey="label" />

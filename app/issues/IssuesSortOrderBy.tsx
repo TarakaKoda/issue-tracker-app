@@ -64,7 +64,7 @@ const IssuesSortOrderBy = ({
 
           {sortOrder.map((order) => (
             <SelectItem key={order.value} value={order.value}>
-              <div className={order.className}>
+              <div className={`${order.className} text-foreground`}>
                 {order.symbol}
                 <p>{order.label}</p>
               </div>

@@ -102,7 +102,7 @@ const IssueForm = ({ issue, updatingIssue = false }: Props) => {
   }
 
   return (
-    <div className="space-y-3 h-min w-full rounded-xl bg-[#ececec] p-5 dark:bg-[#111]">
+    <div className={`space-y-3 h-min w-full rounded-xl bg-[#ececec] p-5 dark:bg-[#111] ${updatingIssue && "col-span-3"}`}>
       <Form {...form}>
         <form onSubmit={form.handleSubmit(onSubmit)} className="space-y-8">
           <FormField
@@ -127,7 +127,7 @@ const IssueForm = ({ issue, updatingIssue = false }: Props) => {
             render={({ field }) => (
               <FormItem>
                 <FormControl>
-                  <div className="rounded-md border border-[#a5aaaf] bg-background">
+                  <div className="rounded-md border border-[#a5aaaf] max-sm:max-h-[90vw] max-lg:max-h-[43vw] overflow-y-scroll bg-background">
                     <MarkdownEditor field={{ ...field }} />
                   </div>
                 </FormControl>
@@ -146,11 +146,11 @@ const IssueForm = ({ issue, updatingIssue = false }: Props) => {
                     defaultValue={field.value}
                   >
                     <FormControl>
-                      <SelectTrigger>
+                      <SelectTrigger className="text-foreground">
                         <SelectValue placeholder="Update the status of the issue." />
                       </SelectTrigger>
                     </FormControl>
-                    <SelectContent className="bg-background dark:border-[#222]">
+                    <SelectContent className="bg-background text-foreground dark:border-[#222]">
                       <SelectGroup>
                         <SelectLabel>Current Issue Status</SelectLabel>
                         <SelectItem value="OPEN">Open</SelectItem>

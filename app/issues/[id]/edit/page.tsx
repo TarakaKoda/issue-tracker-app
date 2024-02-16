@@ -1,8 +1,7 @@
-import { notFound } from "next/navigation";
-import { IssueForm } from "../../_components";
 import { prisma } from "@/prisma/client";
-import { Description } from "@radix-ui/react-toast";
 import { Metadata } from "next";
+import { notFound } from "next/navigation";
+import EditIssueForm from "./EditIssueForm";
 
 interface Props {
   params: { id: string };
@@ -15,7 +14,12 @@ const IssueEditPage = async ({ params: { id } }: Props) => {
 
   if (!issue) notFound();
 
-  return <IssueForm updatingIssue={true} issue={issue} />;
+  ;
+  return <div>
+    <h2 className="text-3xl mb-3 max-lg:block hidden">Edit Issue</h2>
+    <EditIssueForm issue={issue} />
+  </div>
+
 };
 
 export const metadata: Metadata = {

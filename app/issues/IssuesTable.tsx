@@ -70,7 +70,7 @@ const IssuesTable = ({ issues, searchParams }: Props) => {
                   issue.updatedAt.toISOString(),
                 )}`}
               >
-                <p className="flex max-w-48 cursor-help items-center justify-evenly rounded-md border border-[#d3d3d5] py-2 text-center leading-7 transition-colors hover:border-foreground hover:bg-foreground hover:text-background dark:border-[#333] dark:hover:text-black [&:not(:first-child)]:mt-6">
+                <p className="flex max-w-48 max-lg:text-xs cursor-help items-center justify-evenly rounded-md border border-[#d3d3d5] py-2 text-center leading-7 transition-colors hover:border-foreground hover:bg-foreground hover:text-background dark:border-[#333] dark:hover:text-black [&:not(:first-child)]:mt-6">
                   <SlCalender />
                   {formatDateString(issue.createdAt.toISOString())}
                 </p>

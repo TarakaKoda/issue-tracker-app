@@ -46,7 +46,7 @@ const AssigneeSelect = ({ issue }: { issue: Issue }) => {
       defaultValue={issue.assignedToUserId || "unassigned"}
       onValueChange={handleAssignIssue}
     >
-      <SelectTrigger className="dark:border-[#333] md:min-w-[10rem]">
+      <SelectTrigger className="dark:border-[#333] text-foreground md:min-w-[10rem]">
         <MdOutlineAssignmentInd className="text-lg" />
         <SelectValue placeholder="Assign Issue" />
       </SelectTrigger>
